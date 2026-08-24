@@ -632,7 +632,7 @@ footer {
 
       <button
         class="green"
-        onclick="searchIntelligence()"
+        onclick="loadSavedIntelligence()"
       >
         Refresh Intelligence
       </button>
@@ -831,8 +831,313 @@ function displayKeywords() {
           );
 
           saveKeywords();
+/* =========================
+   LOAD AUTOMATED NEWS FEED
+========================= */
 
-          displayKeywords();
+function convertSavedDate(value) {
+
+  if (!value) return "";
+
+  const date = new Date(value);
+
+  if (isNaN(date.getTime())) {
+    return "";
+  }
+
+  const pad = number =>
+    String(number).padStart(2, "0");
+
+  return (
+    date.getUTCFullYear() +
+    pad(date.getUTCMonth() + 1) +
+    pad(date.getUTCDate()) +
+    "T" +
+    pad(date.getUTCHours()) +
+    pad(date.getUTCMinutes()) +
+    pad(date.getUTCSeconds())
+  );
+}
+
+
+async function loadSavedIntelligence() {
+
+  const articleArea =
+    document.getElementById("articles");
+
+  const status =
+    document.getElementById("status");
+
+  document
+    .getElementById("demoWarning")
+    .style.display = "none";
+
+
+  articleArea.innerHTML =
+    `
+    <div class="loading">
+      🔎 Loading current market intelligence...
+    </div>
+    `;
+
+
+  status.innerText =
+    "Loading intelligence...";
+
+
+  try {
+
+    const response =
+      await fetch(
+        "news.json?v=" + Date.now(),
+        {
+          cache: "no-store"
+        }
+      );
+
+
+    if (!response.ok) {
+
+      throw new Error(
+        "Unable to load news.json"
+      );
+
+    }
+
+
+    const data =
+      await response.json();
+
+
+    let articles =
+      (data.articles || []).map(
+        article => ({
+
+          title:
+            article.title,
+
+          url:
+            article.url,
+
+          domain:
+            article.source ||
+            "News Source",
+
+          seendate:
+            convertSavedDate(
+              article.published_at
+            ),
+
+          rawPublishedAt:
+            article.published_at,
+
+          cemtexCategory:
+            article.category ||
+            "Market Intelligence",
+
+          score:
+            article.score || 50,
+
+          salesAngle:
+            article.sales_angle || "",
+
+          matchedQuery:
+            article.matched_query || ""
+
+        })
+      );
+
+
+    /* -------------------------
+       CATEGORY FILTER
+    ------------------------- */
+
+    const selectedCategories =
+      getSelectedCategories();
+
+
+    articles =
+      articles.filter(
+        article => {
+
+          const categoryMatch =
+            selectedCategories.includes(
+              article.cemtexCategory
+            );
+
+
+          const title =
+            (
+              article.title || ""
+            ).toLowerCase();
+
+
+          const keywordMatch =
+            customKeywords.some(
+              keyword =>
+                title.includes(
+                  keyword.toLowerCase()
+                )
+            );
+
+
+          return (
+            categoryMatch ||
+            keywordMatch
+          );
+
+        }
+      );
+
+
+    /* -------------------------
+       TIME FILTER
+    ------------------------- */
+
+    const timeSpan =
+      document
+        .getElementById("timeSpan")
+        .value;
+
+
+    const daysBySpan = {
+
+      "24h": 1,
+      "3d": 3,
+      "7d": 7,
+      "14d": 14,
+      "1month": 31
+
+    };
+
+
+    const days =
+      daysBySpan[timeSpan] || 7;
+
+
+    const cutoff =
+      Date.now() -
+      (
+        days *
+        24 *
+        60 *
+        60 *
+        1000
+      );
+
+
+    articles =
+      articles.filter(
+        article => {
+
+          if (
+            !article.rawPublishedAt
+          ) {
+
+            return true;
+
+          }
+
+
+          const published =
+            new Date(
+              article.rawPublishedAt
+            ).getTime();
+
+
+          return (
+            !isNaN(published) &&
+            published >= cutoff
+          );
+
+        }
+      );
+
+
+    /* -------------------------
+       SORT BY OPPORTUNITY SCORE
+    ------------------------- */
+
+    articles.sort(
+      (a, b) =>
+        b.score - a.score
+    );
+
+
+    currentArticles =
+      articles;
+
+
+    displayArticles(
+      currentArticles
+    );
+
+
+    updateStats(
+      currentArticles
+    );
+
+
+    if (data.generated_at) {
+
+      const generated =
+        new Date(
+          data.generated_at
+        );
+
+
+      status.innerText =
+        "Feed updated " +
+        generated.toLocaleString(
+          [],
+          {
+            month: "short",
+            day: "numeric",
+            hour: "numeric",
+            minute: "2-digit"
+          }
+        );
+
+    }
+
+    else {
+
+      status.innerText =
+        "Intelligence loaded";
+
+    }
+
+  }
+
+  catch(error) {
+
+    console.error(error);
+
+
+    articleArea.innerHTML =
+      `
+      <div class="empty">
+
+        <strong>
+          Unable to load the intelligence feed.
+        </strong>
+
+        <br><br>
+
+        Please try again.
+
+      </div>
+      `;
+
+
+    status.innerText =
+      "Feed error";
+
+  }
+
+}
+         displayKeywords();
+loadSavedIntelligence();
 
         };
 
