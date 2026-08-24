@@ -1,304 +1,655 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>CemTex News Intelligence</title>
+<title>CemTex Intelligence</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<style>
 
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #f3f5f8;
-      color: #172033;
-    }
+* {
+  box-sizing: border-box;
+}
 
-    header {
-      background: #111827;
-      color: white;
-      padding: 32px 20px;
-    }
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f4f6f9;
+  color: #172033;
+}
 
-    .header-inner {
-      max-width: 1200px;
-      margin: auto;
-    }
+header {
+  background: linear-gradient(135deg, #111827, #1f2937);
+  color: white;
+  padding: 34px 20px;
+}
 
-    header h1 {
-      font-size: 34px;
-      margin-bottom: 5px;
-    }
+.header-wrap {
+  max-width: 1250px;
+  margin: auto;
+}
 
-    header p {
-      color: #cbd5e1;
-      font-size: 15px;
-    }
+.brand {
+  font-size: 34px;
+  font-weight: 800;
+  letter-spacing: -.5px;
+}
 
-    .container {
-      width: 92%;
-      max-width: 1200px;
-      margin: 25px auto;
-    }
+.subtitle {
+  margin-top: 5px;
+  color: #cbd5e1;
+  font-size: 17px;
+}
 
-    .panel {
-      background: white;
-      border-radius: 12px;
-      padding: 22px;
-      margin-bottom: 22px;
-      box-shadow: 0 2px 8px rgba(0,0,0,.07);
-    }
+.prototype {
+  margin-top: 10px;
+  color: #93c5fd;
+  font-size: 13px;
+}
 
-    .panel h2 {
-      margin-bottom: 15px;
-      font-size: 20px;
-    }
+.container {
+  width: 94%;
+  max-width: 1250px;
+  margin: 24px auto;
+}
 
-    .input-row {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
+.section {
+  background: white;
+  padding: 22px;
+  border-radius: 14px;
+  margin-bottom: 20px;
+  box-shadow: 0 3px 14px rgba(0,0,0,.06);
+}
 
-    input {
-      flex: 1;
-      min-width: 250px;
-      padding: 12px;
-      border: 1px solid #cbd5e1;
-      border-radius: 7px;
-      font-size: 16px;
-    }
+.section-title {
+  font-size: 19px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
 
-    select {
-      padding: 12px;
-      border: 1px solid #cbd5e1;
-      border-radius: 7px;
-      font-size: 15px;
-      background: white;
-    }
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-bottom: 20px;
+}
 
-    button {
-      background: #2563eb;
-      color: white;
-      border: none;
-      border-radius: 7px;
-      padding: 12px 18px;
-      font-weight: bold;
-      cursor: pointer;
-      font-size: 14px;
-    }
+.stat-card {
+  background: white;
+  padding: 19px;
+  border-radius: 13px;
+  box-shadow: 0 3px 14px rgba(0,0,0,.06);
+}
 
-    button:hover {
-      background: #1d4ed8;
-    }
+.stat-label {
+  color: #64748b;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+}
 
-    .search-button {
-      background: #059669;
-    }
+.stat-number {
+  font-size: 29px;
+  font-weight: 800;
+  margin-top: 5px;
+}
 
-    .search-button:hover {
-      background: #047857;
-    }
+.categories {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
 
-    .keywords {
-      margin-top: 16px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
+.category {
+  border: 2px solid #e2e8f0;
+  border-radius: 11px;
+  padding: 14px;
+  cursor: pointer;
+  transition: .2s;
+}
 
-    .keyword {
-      background: #e0e7ff;
-      color: #3730a3;
-      padding: 7px 12px;
-      border-radius: 20px;
-      font-size: 13px;
-      cursor: pointer;
-    }
+.category:hover {
+  border-color: #93c5fd;
+}
 
-    .keyword:hover {
-      background: #c7d2fe;
-    }
+.category.active {
+  border-color: #2563eb;
+  background: #eff6ff;
+}
 
-    .toolbar {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      flex-wrap: wrap;
-      margin-bottom: 18px;
-    }
+.category-name {
+  font-weight: 700;
+  margin-bottom: 5px;
+}
 
-    .status {
-      margin-left: auto;
-      font-size: 14px;
-      color: #64748b;
-    }
+.category-description {
+  font-size: 12px;
+  color: #64748b;
+  line-height: 1.4;
+}
 
-    .article {
-      background: white;
-      padding: 20px;
-      border-radius: 12px;
-      margin-bottom: 15px;
-      box-shadow: 0 2px 8px rgba(0,0,0,.06);
-    }
+.controls {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
 
-    .article h3 {
-      margin-bottom: 9px;
-      font-size: 19px;
-      line-height: 1.3;
-    }
+input,
+select {
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 11px 12px;
+  font-size: 14px;
+}
 
-    .article h3 a {
-      color: #172033;
-      text-decoration: none;
-    }
+input {
+  flex: 1;
+  min-width: 260px;
+}
 
-    .article h3 a:hover {
-      color: #2563eb;
-    }
+button {
+  border: none;
+  border-radius: 8px;
+  padding: 11px 17px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 14px;
+}
 
-    .article-meta {
-      color: #64748b;
-      font-size: 13px;
-      margin-bottom: 10px;
-    }
+.primary {
+  background: #2563eb;
+  color: white;
+}
 
-    .article-image {
-      width: 150px;
-      height: 95px;
-      object-fit: cover;
-      border-radius: 8px;
-      float: right;
-      margin-left: 18px;
-      margin-bottom: 10px;
-    }
+.primary:hover {
+  background: #1d4ed8;
+}
 
-    .source-tag {
-      display: inline-block;
-      padding: 5px 9px;
-      background: #dcfce7;
-      color: #166534;
-      border-radius: 12px;
-      font-size: 12px;
-      margin-top: 5px;
-    }
+.green {
+  background: #059669;
+  color: white;
+}
 
-    .empty {
-      text-align: center;
-      padding: 50px;
-      color: #64748b;
-      background: white;
-      border-radius: 12px;
-    }
+.green:hover {
+  background: #047857;
+}
 
-    .loading {
-      text-align: center;
-      padding: 45px;
-      background: white;
-      border-radius: 12px;
-      font-size: 18px;
-    }
+.secondary {
+  background: #e2e8f0;
+  color: #334155;
+}
 
-    .count {
-      font-size: 14px;
-      color: #64748b;
-      margin-bottom: 15px;
-    }
+.keywords {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
 
-    footer {
-      text-align: center;
-      color: #94a3b8;
-      padding: 30px;
-      font-size: 12px;
-    }
+.keyword {
+  background: #eef2ff;
+  color: #3730a3;
+  padding: 7px 11px;
+  border-radius: 18px;
+  font-size: 12px;
+  cursor: pointer;
+}
 
-    @media(max-width: 650px) {
+.keyword:hover {
+  background: #ddd6fe;
+}
 
-      header h1 {
-        font-size: 27px;
-      }
+.toolbar {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+}
 
-      .article-image {
-        width: 100%;
-        height: 180px;
-        float: none;
-        margin: 0 0 15px 0;
-      }
+.status {
+  margin-left: auto;
+  font-size: 13px;
+  color: #64748b;
+}
 
-      .status {
-        width: 100%;
-        margin-left: 0;
-      }
-    }
-  </style>
+.results-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0 12px;
+}
 
+.results-heading h2 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.result-count {
+  color: #64748b;
+  font-size: 13px;
+}
+
+.article {
+  background: white;
+  border-radius: 13px;
+  padding: 20px;
+  margin-bottom: 14px;
+  box-shadow: 0 3px 14px rgba(0,0,0,.055);
+  border-left: 5px solid #cbd5e1;
+}
+
+.article.high {
+  border-left-color: #dc2626;
+}
+
+.article.medium {
+  border-left-color: #f59e0b;
+}
+
+.article.normal {
+  border-left-color: #2563eb;
+}
+
+.article-top {
+  display: flex;
+  gap: 16px;
+}
+
+.article-body {
+  flex: 1;
+}
+
+.article-image {
+  width: 175px;
+  height: 115px;
+  object-fit: cover;
+  border-radius: 9px;
+}
+
+.article h3 {
+  margin: 3px 0 8px;
+  font-size: 19px;
+  line-height: 1.35;
+}
+
+.article h3 a {
+  color: #172033;
+  text-decoration: none;
+}
+
+.article h3 a:hover {
+  color: #2563eb;
+}
+
+.meta {
+  color: #64748b;
+  font-size: 12px;
+  margin-bottom: 11px;
+}
+
+.badges {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.badge {
+  display: inline-block;
+  border-radius: 13px;
+  padding: 5px 9px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.score-high {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.score-medium {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.score-normal {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.category-badge {
+  background: #ecfdf5;
+  color: #065f46;
+}
+
+.sales-angle {
+  margin-top: 12px;
+  background: #f8fafc;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.sales-angle strong {
+  color: #0f172a;
+}
+
+.empty {
+  background: white;
+  padding: 50px 25px;
+  border-radius: 13px;
+  text-align: center;
+  color: #64748b;
+}
+
+.loading {
+  background: white;
+  padding: 50px 25px;
+  border-radius: 13px;
+  text-align: center;
+  font-size: 17px;
+}
+
+.demo-warning {
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  color: #9a3412;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 15px;
+  display: none;
+  font-size: 13px;
+}
+
+footer {
+  text-align: center;
+  padding: 30px;
+  color: #94a3b8;
+  font-size: 12px;
+}
+
+@media(max-width: 900px) {
+
+  .stats,
+  .categories {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+}
+
+@media(max-width: 620px) {
+
+  .stats,
+  .categories {
+    grid-template-columns: 1fr;
+  }
+
+  .article-top {
+    flex-direction: column;
+  }
+
+  .article-image {
+    width: 100%;
+    height: 190px;
+  }
+
+  .status {
+    width: 100%;
+    margin-left: 0;
+  }
+
+}
+
+</style>
 </head>
 
 <body>
 
 <header>
-  <div class="header-inner">
-    <h1>CemTex</h1>
-    <p>News & Market Intelligence Monitor</p>
+
+  <div class="header-wrap">
+
+    <div class="brand">
+      CemTex Intelligence
+    </div>
+
+    <div class="subtitle">
+      Market Intelligence & Sales Opportunity Monitor
+    </div>
+
+    <div class="prototype">
+      Turning market activity into actionable sales intelligence.
+    </div>
+
   </div>
+
 </header>
 
 
 <div class="container">
 
-  <div class="panel">
 
-    <h2>Tracked Keywords</h2>
+  <!-- STAT CARDS -->
 
-    <div class="input-row">
+  <div class="stats">
 
-      <input
-        type="text"
-        id="keywordInput"
-        placeholder="Example: data center cooling"
-      >
-
-      <button onclick="addKeyword()">
-        Add Keyword
-      </button>
-
+    <div class="stat-card">
+      <div class="stat-label">
+        Articles Found
+      </div>
+      <div class="stat-number" id="articleCount">
+        0
+      </div>
     </div>
 
-    <div class="keywords" id="keywordList"></div>
+    <div class="stat-card">
+      <div class="stat-label">
+        High Priority
+      </div>
+      <div class="stat-number" id="highCount">
+        0
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-label">
+        Data Center Signals
+      </div>
+      <div class="stat-number" id="dataCenterCount">
+        0
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-label">
+        Expansion Signals
+      </div>
+      <div class="stat-number" id="expansionCount">
+        0
+      </div>
+    </div>
 
   </div>
 
 
-  <div class="panel">
 
-    <h2>Search Settings</h2>
+  <!-- INTELLIGENCE CATEGORIES -->
+
+  <div class="section">
+
+    <div class="section-title">
+      Intelligence Channels
+    </div>
+
+    <div class="categories">
+
+
+      <div
+        class="category active"
+        data-category="Data Centers"
+        onclick="toggleCategory(this)"
+      >
+
+        <div class="category-name">
+          🖥️ Data Centers
+        </div>
+
+        <div class="category-description">
+          Cooling, liquid cooling, hyperscale construction and new campuses.
+        </div>
+
+      </div>
+
+
+      <div
+        class="category active"
+        data-category="Industrial Expansion"
+        onclick="toggleCategory(this)"
+      >
+
+        <div class="category-name">
+          🏭 Industrial Expansion
+        </div>
+
+        <div class="category-description">
+          New plants, facility expansions, manufacturing and capital projects.
+        </div>
+
+      </div>
+
+
+      <div
+        class="category active"
+        data-category="Energy & Process"
+        onclick="toggleCategory(this)"
+      >
+
+        <div class="category-name">
+          ⚙️ Energy & Process
+        </div>
+
+        <div class="category-description">
+          Petrochemical, refinery, LNG and chemical facility activity.
+        </div>
+
+      </div>
+
+
+      <div
+        class="category active"
+        data-category="Platform Watch"
+        onclick="toggleCategory(this)"
+      >
+
+        <div class="category-name">
+          👁️ Platform Watch
+        </div>
+
+        <div class="category-description">
+          Texcel, SHF, OmegaOne, APG and Harbour Group developments.
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- CUSTOM WATCHLIST -->
+
+  <div class="section">
+
+    <div class="section-title">
+      Custom Watchlist
+    </div>
+
+    <div class="controls">
+
+      <input
+        id="keywordInput"
+        type="text"
+        placeholder="Add a customer, competitor, market or keyword..."
+      >
+
+      <button
+        class="primary"
+        onclick="addKeyword()"
+      >
+        Add
+      </button>
+
+    </div>
+
+    <div
+      class="keywords"
+      id="keywordList"
+    ></div>
+
+  </div>
+
+
+
+  <!-- SEARCH CONTROLS -->
+
+  <div class="section">
+
+    <div class="section-title">
+      Intelligence Search
+    </div>
 
     <div class="toolbar">
 
       <select id="timeSpan">
-        <option value="24h">Past 24 Hours</option>
-        <option value="3d">Past 3 Days</option>
-        <option value="7d" selected>Past 7 Days</option>
-        <option value="14d">Past 14 Days</option>
-        <option value="1month">Past Month</option>
+
+        <option value="24h">
+          Past 24 Hours
+        </option>
+
+        <option value="3d">
+          Past 3 Days
+        </option>
+
+        <option value="7d" selected>
+          Past 7 Days
+        </option>
+
+        <option value="14d">
+          Past 14 Days
+        </option>
+
+        <option value="1month">
+          Past Month
+        </option>
+
       </select>
 
-      <select id="maxRecords">
-        <option value="25">25 Articles</option>
-        <option value="50" selected>50 Articles</option>
-        <option value="100">100 Articles</option>
-      </select>
 
-      <button class="search-button" onclick="searchNews()">
-        Search News
+      <button
+        class="green"
+        onclick="searchIntelligence()"
+      >
+        Refresh Intelligence
       </button>
 
-      <div class="status" id="status">
+
+      <button
+        class="secondary"
+        onclick="loadDemo()"
+      >
+        Demo Mode
+      </button>
+
+
+      <div
+        class="status"
+        id="status"
+      >
         Ready
       </div>
 
@@ -307,59 +658,163 @@
   </div>
 
 
-  <div class="count" id="resultCount"></div>
+  <div
+    class="demo-warning"
+    id="demoWarning"
+  >
+    Demo Mode is active. These are sample opportunities for presentation/testing only.
+  </div>
+
+
+  <div class="results-heading">
+
+    <h2>
+      Opportunity Feed
+    </h2>
+
+    <div
+      class="result-count"
+      id="resultCount"
+    >
+      No search yet
+    </div>
+
+  </div>
+
 
   <div id="articles">
 
     <div class="empty">
-      Add keywords and click <strong>Search News</strong>.
+
+      Select the intelligence channels you want to monitor
+      and click <strong>Refresh Intelligence</strong>.
+
     </div>
 
   </div>
+
 
 </div>
 
 
 <footer>
-  CemTex News Intelligence • Powered by GDELT
+  CemTex Intelligence • Sales Opportunity Discovery Prototype
 </footer>
 
 
 <script>
 
-  let keywords =
-    JSON.parse(localStorage.getItem("cemtexKeywords")) ||
-    [
-      "data center cooling",
-      "industrial hose",
-      "industrial fittings"
-    ];
+
+/* =========================
+   SEARCH CONFIGURATION
+========================= */
 
 
-  function saveKeywords() {
+const categoryTerms = {
 
-    localStorage.setItem(
-      "cemtexKeywords",
-      JSON.stringify(keywords)
+  "Data Centers": [
+    "data center cooling",
+    "liquid cooling",
+    "data center construction",
+    "hyperscale data center"
+  ],
+
+  "Industrial Expansion": [
+    "manufacturing plant expansion",
+    "new manufacturing facility",
+    "industrial expansion",
+    "plant construction"
+  ],
+
+  "Energy & Process": [
+    "refinery expansion",
+    "petrochemical expansion",
+    "chemical plant expansion",
+    "LNG project"
+  ],
+
+  "Platform Watch": [
+    "Texcel",
+    "Stainless Hose Fittings",
+    "OmegaOne",
+    "APG seals",
+    "Harbour Group"
+  ]
+
+};
+
+
+
+let customKeywords =
+  JSON.parse(
+    localStorage.getItem(
+      "cemtexCustomKeywords"
+    )
+  ) || [
+    "industrial hose",
+    "industrial fittings"
+  ];
+
+
+let currentArticles = [];
+
+
+
+/* =========================
+   CATEGORY CONTROLS
+========================= */
+
+
+function toggleCategory(element) {
+
+  element.classList.toggle(
+    "active"
+  );
+
+}
+
+
+
+function getSelectedCategories() {
+
+  return Array.from(
+    document.querySelectorAll(
+      ".category.active"
+    )
+  ).map(
+    element =>
+      element.dataset.category
+  );
+
+}
+
+
+
+/* =========================
+   CUSTOM KEYWORDS
+========================= */
+
+
+function displayKeywords() {
+
+  const container =
+    document.getElementById(
+      "keywordList"
     );
 
-  }
+  container.innerHTML = "";
 
 
-  function displayKeywords() {
-
-    const keywordList =
-      document.getElementById("keywordList");
-
-    keywordList.innerHTML = "";
-
-
-    keywords.forEach((keyword, index) => {
+  customKeywords.forEach(
+    (keyword, index) => {
 
       const tag =
-        document.createElement("span");
+        document.createElement(
+          "span"
+        );
 
-      tag.className = "keyword";
+      tag.className =
+        "keyword";
 
       tag.innerText =
         keyword + "  ×";
@@ -370,7 +825,10 @@
       tag.onclick =
         function() {
 
-          keywords.splice(index, 1);
+          customKeywords.splice(
+            index,
+            1
+          );
 
           saveKeywords();
 
@@ -378,119 +836,147 @@
 
         };
 
-      keywordList.appendChild(tag);
-
-    });
-
-  }
-
-
-  function addKeyword() {
-
-    const input =
-      document.getElementById("keywordInput");
-
-    const keyword =
-      input.value.trim();
-
-
-    if (
-      keyword !== "" &&
-      !keywords.includes(keyword)
-    ) {
-
-      keywords.push(keyword);
-
-      saveKeywords();
-
-      displayKeywords();
+      container.appendChild(tag);
 
     }
+  );
 
-    input.value = "";
-
-  }
+}
 
 
-  document
-    .getElementById("keywordInput")
-    .addEventListener(
-      "keydown",
-      function(event) {
 
-        if (event.key === "Enter") {
+function addKeyword() {
 
-          addKeyword();
-
-        }
-
-      }
+  const input =
+    document.getElementById(
+      "keywordInput"
     );
 
+  const value =
+    input.value.trim();
 
-  function makeSearchQuery() {
 
-    return keywords.map(keyword => {
+  if (
+    value &&
+    !customKeywords.includes(value)
+  ) {
 
-      const clean =
-        keyword.replace(/"/g, "");
+    customKeywords.push(value);
 
-      if (clean.includes(" ")) {
+    saveKeywords();
 
-        return '"' + clean + '"';
-
-      }
-
-      return clean;
-
-    }).join(" OR ");
+    displayKeywords();
 
   }
 
 
-  function jsonp(url) {
+  input.value = "";
 
-    return new Promise((resolve, reject) => {
+}
+
+
+
+function saveKeywords() {
+
+  localStorage.setItem(
+    "cemtexCustomKeywords",
+    JSON.stringify(
+      customKeywords
+    )
+  );
+
+}
+
+
+
+document
+  .getElementById(
+    "keywordInput"
+  )
+  .addEventListener(
+    "keydown",
+    function(event) {
+
+      if (
+        event.key === "Enter"
+      ) {
+
+        addKeyword();
+
+      }
+
+    }
+  );
+
+
+
+/* =========================
+   GDELT JSONP
+========================= */
+
+
+function jsonp(url) {
+
+  return new Promise(
+    (resolve, reject) => {
 
       const callbackName =
-        "cemtexCallback_" +
+        "cemtex_" +
         Date.now() +
         "_" +
-        Math.floor(Math.random() * 100000);
+        Math.floor(
+          Math.random() * 100000
+        );
 
 
       const script =
-        document.createElement("script");
+        document.createElement(
+          "script"
+        );
 
 
       const timer =
-        setTimeout(() => {
+        setTimeout(
+          () => {
 
-          cleanup();
+            cleanup();
 
-          reject(
-            new Error(
-              "The news service took too long to respond."
-            )
-          );
+            reject(
+              new Error(
+                "News service timed out."
+              )
+            );
 
-        }, 20000);
+          },
+          20000
+        );
 
 
       function cleanup() {
 
         clearTimeout(timer);
 
-        delete window[callbackName];
+        delete window[
+          callbackName
+        ];
 
-        if (script.parentNode) {
-          script.parentNode.removeChild(script);
+        if (
+          script.parentNode
+        ) {
+
+          script.parentNode
+            .removeChild(
+              script
+            );
+
         }
 
       }
 
 
-      window[callbackName] =
+      window[
+        callbackName
+      ] =
         function(data) {
 
           cleanup();
@@ -507,7 +993,7 @@
 
           reject(
             new Error(
-              "Unable to contact the news service."
+              "Unable to reach news service."
             )
           );
 
@@ -520,185 +1006,671 @@
         callbackName;
 
 
-      document.body.appendChild(script);
+      document.body
+        .appendChild(script);
 
-    });
+    }
+  );
+
+}
+
+
+
+/* =========================
+   LIVE SEARCH
+========================= */
+
+
+async function searchIntelligence() {
+
+  document
+    .getElementById(
+      "demoWarning"
+    )
+    .style.display =
+      "none";
+
+
+  const categories =
+    getSelectedCategories();
+
+
+  if (
+    categories.length === 0 &&
+    customKeywords.length === 0
+  ) {
+
+    alert(
+      "Select at least one intelligence channel or add a custom keyword."
+    );
+
+    return;
 
   }
 
 
-  async function searchNews() {
-
-    const articlesDiv =
-      document.getElementById("articles");
-
-    const status =
-      document.getElementById("status");
-
-    const resultCount =
-      document.getElementById("resultCount");
+  const articleArea =
+    document.getElementById(
+      "articles"
+    );
 
 
-    if (keywords.length === 0) {
+  const status =
+    document.getElementById(
+      "status"
+    );
 
-      articlesDiv.innerHTML =
-        '<div class="empty">Add at least one keyword first.</div>';
 
-      return;
+  articleArea.innerHTML =
+    `
+    <div class="loading">
+      🔎 Gathering market intelligence...
+    </div>
+    `;
+
+
+  status.innerText =
+    "Scanning news...";
+
+
+  const timespan =
+    document.getElementById(
+      "timeSpan"
+    ).value;
+
+
+  const searches = [];
+
+
+  categories.forEach(
+    category => {
+
+      searches.push(
+        runCategorySearch(
+          category,
+          categoryTerms[
+            category
+          ],
+          timespan
+        )
+      );
 
     }
+  );
 
 
-    articlesDiv.innerHTML =
-      '<div class="loading">🔎 Searching global news...</div>';
+  if (
+    customKeywords.length > 0
+  ) {
 
-    status.innerText =
-      "Gathering data...";
+    searches.push(
+      runCategorySearch(
+        "Custom Watchlist",
+        customKeywords,
+        timespan
+      )
+    );
 
-    resultCount.innerText = "";
-
-
-    const query =
-      "(" + makeSearchQuery() + ")";
-
-    const timespan =
-      document.getElementById("timeSpan").value;
-
-    const maxRecords =
-      document.getElementById("maxRecords").value;
+  }
 
 
-    const url =
-      "https://api.gdeltproject.org/api/v2/doc/doc" +
-      "?query=" +
-      encodeURIComponent(query) +
-      "&mode=artlist" +
-      "&maxrecords=" +
-      maxRecords +
-      "&timespan=" +
-      encodeURIComponent(timespan) +
-      "&sort=datedesc";
+  try {
 
-
-    try {
-
-      const data =
-        await jsonp(url);
-
-
-      if (
-        !data ||
-        !data.articles ||
-        data.articles.length === 0
-      ) {
-
-        articlesDiv.innerHTML =
-          '<div class="empty">No matching articles found. Try broader keywords.</div>';
-
-        status.innerText =
-          "Search complete";
-
-        return;
-
-      }
-
-
-      displayArticles(
-        data.articles
+    const results =
+      await Promise.allSettled(
+        searches
       );
 
 
-      resultCount.innerText =
-        data.articles.length +
-        " matching articles found";
+    let combined = [];
 
 
-      status.innerText =
-        "Updated " +
-        new Date().toLocaleTimeString(
+    results.forEach(
+      result => {
+
+        if (
+          result.status ===
+          "fulfilled"
+        ) {
+
+          combined =
+            combined.concat(
+              result.value
+            );
+
+        }
+
+      }
+    );
+
+
+    combined =
+      removeDuplicates(
+        combined
+      );
+
+
+    combined.forEach(
+      article => {
+
+        article.score =
+          calculateScore(
+            article
+          );
+
+        article.salesAngle =
+          generateSalesAngle(
+            article
+          );
+
+      }
+    );
+
+
+    combined.sort(
+      (a, b) =>
+        b.score - a.score
+    );
+
+
+    currentArticles =
+      combined.slice(
+        0,
+        75
+      );
+
+
+    displayArticles(
+      currentArticles
+    );
+
+
+    updateStats(
+      currentArticles
+    );
+
+
+    status.innerText =
+      "Updated " +
+      new Date()
+        .toLocaleTimeString(
           [],
           {
-            hour: "2-digit",
+            hour: "numeric",
             minute: "2-digit"
           }
         );
 
 
-    }
+  }
 
-    catch(error) {
+  catch(error) {
 
-      console.error(error);
-
-
-      articlesDiv.innerHTML =
-        `
-        <div class="empty">
-
-          <strong>Search temporarily unavailable.</strong>
-
-          <br><br>
-
-          ${error.message}
-
-          <br><br>
-
-          Try clicking Search News again.
-
-        </div>
-        `;
+    console.error(error);
 
 
-      status.innerText =
-        "Search error";
+    articleArea.innerHTML =
+      `
+      <div class="empty">
 
-    }
+        <strong>
+          Live search is temporarily unavailable.
+        </strong>
+
+        <br><br>
+
+        You can retry or use
+        Demo Mode to test the dashboard.
+
+      </div>
+      `;
+
+
+    status.innerText =
+      "Search error";
+
+  }
+
+}
+
+
+
+/* =========================
+   CATEGORY SEARCH
+========================= */
+
+
+async function runCategorySearch(
+  category,
+  terms,
+  timespan
+) {
+
+  const cleanTerms =
+    terms
+      .slice(0, 8)
+      .map(
+        term => {
+
+          const cleaned =
+            term.replace(
+              /"/g,
+              ""
+            );
+
+
+          return cleaned.includes(" ")
+            ? `"${cleaned}"`
+            : cleaned;
+
+        }
+      );
+
+
+  const query =
+    "(" +
+    cleanTerms.join(
+      " OR "
+    ) +
+    ")";
+
+
+  const url =
+    "https://api.gdeltproject.org/api/v2/doc/doc" +
+    "?query=" +
+    encodeURIComponent(
+      query
+    ) +
+    "&mode=artlist" +
+    "&maxrecords=25" +
+    "&timespan=" +
+    encodeURIComponent(
+      timespan
+    ) +
+    "&sort=datedesc";
+
+
+  const data =
+    await jsonp(url);
+
+
+  if (
+    !data ||
+    !Array.isArray(
+      data.articles
+    )
+  ) {
+
+    return [];
 
   }
 
 
-  function displayArticles(articles) {
+  return data.articles.map(
+    article => ({
+      ...article,
+      cemtexCategory:
+        category
+    })
+  );
 
-    const articlesDiv =
-      document.getElementById("articles");
-
-    articlesDiv.innerHTML = "";
+}
 
 
-    const seenUrls =
-      new Set();
+
+/* =========================
+   DEDUPLICATION
+========================= */
 
 
-    articles.forEach(article => {
+function removeDuplicates(
+  articles
+) {
+
+  const seen =
+    new Set();
+
+
+  return articles.filter(
+    article => {
 
       if (
         !article.url ||
-        seenUrls.has(article.url)
+        seen.has(
+          article.url
+        )
       ) {
-        return;
+
+        return false;
+
       }
 
 
-      seenUrls.add(article.url);
+      seen.add(
+        article.url
+      );
+
+      return true;
+
+    }
+  );
+
+}
+
+
+
+/* =========================
+   OPPORTUNITY SCORING
+========================= */
+
+
+function calculateScore(
+  article
+) {
+
+  const text =
+    (
+      (article.title || "") +
+      " " +
+      (article.domain || "") +
+      " " +
+      (article.cemtexCategory || "")
+    )
+    .toLowerCase();
+
+
+  let score = 52;
+
+
+  const majorSignals = [
+    "billion",
+    "million",
+    "investment",
+    "expansion",
+    "construction",
+    "new facility",
+    "new plant",
+    "campus",
+    "capacity",
+    "build",
+    "project"
+  ];
+
+
+  majorSignals.forEach(
+    word => {
+
+      if (
+        text.includes(word)
+      ) {
+
+        score += 5;
+
+      }
+
+    }
+  );
+
+
+  if (
+    text.includes(
+      "data center"
+    )
+  ) {
+
+    score += 12;
+
+  }
+
+
+  if (
+    text.includes(
+      "cooling"
+    )
+  ) {
+
+    score += 8;
+
+  }
+
+
+  if (
+    text.includes(
+      "manufacturing"
+    )
+  ) {
+
+    score += 8;
+
+  }
+
+
+  if (
+    text.includes(
+      "refinery"
+    ) ||
+    text.includes(
+      "petrochemical"
+    ) ||
+    text.includes(
+      "chemical plant"
+    )
+  ) {
+
+    score += 8;
+
+  }
+
+
+  if (
+    text.includes(
+      "acquisition"
+    ) ||
+    text.includes(
+      "acquires"
+    )
+  ) {
+
+    score += 7;
+
+  }
+
+
+  return Math.min(
+    score,
+    99
+  );
+
+}
+
+
+
+/* =========================
+   SALES ANGLE
+========================= */
+
+
+function generateSalesAngle(
+  article
+) {
+
+  const category =
+    article.cemtexCategory;
+
+
+  if (
+    category ===
+    "Data Centers"
+  ) {
+
+    return (
+      "Possible sales angle: investigate cooling infrastructure requirements, " +
+      "including hose, fittings, couplings, seals and fluid-handling components."
+    );
+
+  }
+
+
+  if (
+    category ===
+    "Industrial Expansion"
+  ) {
+
+    return (
+      "Possible sales angle: determine whether this facility creates new OEM, " +
+      "MRO, hose, fitting or fluid-transfer demand and identify the responsible contractor or plant contact."
+    );
+
+  }
+
+
+  if (
+    category ===
+    "Energy & Process"
+  ) {
+
+    return (
+      "Possible sales angle: review process-fluid and maintenance requirements " +
+      "for hose, stainless fittings, sealing products and related industrial components."
+    );
+
+  }
+
+
+  if (
+    category ===
+    "Platform Watch"
+  ) {
+
+    return (
+      "Strategic intelligence: review for platform, competitor, acquisition, " +
+      "product or channel implications that may affect sales strategy."
+    );
+
+  }
+
+
+  return (
+    "Watchlist signal: determine whether this development creates a customer, " +
+    "competitive or territory-level sales opportunity."
+  );
+
+}
+
+
+
+/* =========================
+   DISPLAY ARTICLES
+========================= */
+
+
+function displayArticles(
+  articles
+) {
+
+  const container =
+    document.getElementById(
+      "articles"
+    );
+
+
+  if (
+    articles.length === 0
+  ) {
+
+    container.innerHTML =
+      `
+      <div class="empty">
+        No matching articles found.
+        Try a broader time range
+        or different keywords.
+      </div>
+      `;
+
+
+    document
+      .getElementById(
+        "resultCount"
+      )
+      .innerText =
+        "0 opportunities";
+
+
+    return;
+
+  }
+
+
+  container.innerHTML = "";
+
+
+  articles.forEach(
+    article => {
+
+      const score =
+        article.score || 50;
+
+
+      let level =
+        "normal";
+
+
+      let scoreClass =
+        "score-normal";
+
+
+      if (
+        score >= 80
+      ) {
+
+        level =
+          "high";
+
+        scoreClass =
+          "score-high";
+
+      }
+
+      else if (
+        score >= 68
+      ) {
+
+        level =
+          "medium";
+
+        scoreClass =
+          "score-medium";
+
+      }
 
 
       const card =
-        document.createElement("div");
+        document.createElement(
+          "div"
+        );
+
 
       card.className =
-        "article";
+        "article " +
+        level;
 
 
-      let imageHtml = "";
+      let imageHtml =
+        "";
 
 
-      if (article.socialimage) {
+      if (
+        article.socialimage &&
+        safeUrl(
+          article.socialimage
+        )
+      ) {
 
         imageHtml =
           `
           <img
-            src="${escapeHtml(article.socialimage)}"
             class="article-image"
+            src="${escapeHtml(article.socialimage)}"
             onerror="this.style.display='none'"
           >
           `;
@@ -706,131 +1678,439 @@
       }
 
 
+      const articleUrl =
+        safeUrl(article.url)
+          ? article.url
+          : "#";
+
+
       card.innerHTML =
         `
 
-        ${imageHtml}
+        <div class="article-top">
 
-        <h3>
+          <div class="article-body">
 
-          <a
-            href="${escapeHtml(article.url)}"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+            <div class="badges">
 
-            ${escapeHtml(
-              article.title ||
-              "Untitled Article"
-            )}
+              <span
+                class="badge ${scoreClass}"
+              >
+                Opportunity Score:
+                ${score}
+              </span>
 
-          </a>
+              <span
+                class="badge category-badge"
+              >
+                ${escapeHtml(
+                  article.cemtexCategory ||
+                  "Market Intelligence"
+                )}
+              </span>
 
-        </h3>
+            </div>
 
 
-        <div class="article-meta">
+            <h3>
 
-          ${escapeHtml(
-            article.domain ||
-            "Unknown Source"
-          )}
+              <a
+                href="${escapeHtml(articleUrl)}"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
 
-          •
+                ${escapeHtml(
+                  article.title ||
+                  "Untitled Article"
+                )}
 
-          ${formatDate(
-            article.seendate
-          )}
+              </a>
+
+            </h3>
+
+
+            <div class="meta">
+
+              ${escapeHtml(
+                article.domain ||
+                "Unknown Source"
+              )}
+
+              &nbsp;•&nbsp;
+
+              ${formatDate(
+                article.seendate
+              )}
+
+            </div>
+
+
+            <div class="sales-angle">
+
+              <strong>
+                Sales Intelligence:
+              </strong>
+
+              ${escapeHtml(
+                article.salesAngle ||
+                ""
+              )}
+
+            </div>
+
+          </div>
+
+
+          ${imageHtml}
 
         </div>
-
-
-        <span class="source-tag">
-
-          ${escapeHtml(
-            article.sourcecountry ||
-            "News"
-          )}
-
-        </span>
-
-
-        <div style="clear:both"></div>
 
         `;
 
 
-      articlesDiv.appendChild(card);
+      container
+        .appendChild(
+          card
+        );
 
-    });
+    }
+  );
+
+
+  document
+    .getElementById(
+      "resultCount"
+    )
+    .innerText =
+      articles.length +
+      " intelligence signals";
+
+}
+
+
+
+/* =========================
+   DASHBOARD STATS
+========================= */
+
+
+function updateStats(
+  articles
+) {
+
+  const high =
+    articles.filter(
+      article =>
+        article.score >= 80
+    ).length;
+
+
+  const dataCenters =
+    articles.filter(
+      article =>
+        article.cemtexCategory ===
+        "Data Centers"
+    ).length;
+
+
+  const expansions =
+    articles.filter(
+      article =>
+        article.cemtexCategory ===
+        "Industrial Expansion"
+    ).length;
+
+
+  document
+    .getElementById(
+      "articleCount"
+    )
+    .innerText =
+      articles.length;
+
+
+  document
+    .getElementById(
+      "highCount"
+    )
+    .innerText =
+      high;
+
+
+  document
+    .getElementById(
+      "dataCenterCount"
+    )
+    .innerText =
+      dataCenters;
+
+
+  document
+    .getElementById(
+      "expansionCount"
+    )
+    .innerText =
+      expansions;
+
+}
+
+
+
+/* =========================
+   DEMO MODE
+========================= */
+
+
+function loadDemo() {
+
+  document
+    .getElementById(
+      "demoWarning"
+    )
+    .style.display =
+      "block";
+
+
+  const demoArticles = [
+
+    {
+      title:
+        "Hyperscale Data Center Campus Announces Major Expansion",
+
+      domain:
+        "Example Industry News",
+
+      url:
+        "#",
+
+      seendate:
+        "",
+
+      cemtexCategory:
+        "Data Centers",
+
+      score:
+        94,
+
+      salesAngle:
+        "Possible sales angle: identify cooling-system OEMs and contractors involved in the project and investigate hose, fittings, couplings and sealing requirements."
+    },
+
+    {
+      title:
+        "Manufacturer Plans New Gulf Coast Production Facility",
+
+      domain:
+        "Example Manufacturing News",
+
+      url:
+        "#",
+
+      seendate:
+        "",
+
+      cemtexCategory:
+        "Industrial Expansion",
+
+      score:
+        88,
+
+      salesAngle:
+        "Possible sales angle: determine plant process requirements, contractor relationships and future MRO demand before the facility enters production."
+    },
+
+    {
+      title:
+        "Petrochemical Operator Approves Capacity Expansion",
+
+      domain:
+        "Example Energy News",
+
+      url:
+        "#",
+
+      seendate:
+        "",
+
+      cemtexCategory:
+        "Energy & Process",
+
+      score:
+        84,
+
+      salesAngle:
+        "Possible sales angle: investigate fluid-transfer, stainless fitting, sealing and maintenance requirements tied to the expansion."
+    },
+
+    {
+      title:
+        "Industrial Distributor Announces Strategic Acquisition",
+
+      domain:
+        "Example Distribution News",
+
+      url:
+        "#",
+
+      seendate:
+        "",
+
+      cemtexCategory:
+        "Platform Watch",
+
+      score:
+        73,
+
+      salesAngle:
+        "Strategic intelligence: evaluate territory overlap, product expansion and potential changes in competitive positioning."
+    }
+
+  ];
+
+
+  currentArticles =
+    demoArticles;
+
+
+  displayArticles(
+    demoArticles
+  );
+
+
+  updateStats(
+    demoArticles
+  );
+
+
+  document
+    .getElementById(
+      "status"
+    )
+    .innerText =
+      "Demo Mode";
+
+}
+
+
+
+/* =========================
+   HELPERS
+========================= */
+
+
+function safeUrl(url) {
+
+  return (
+    typeof url ===
+      "string" &&
+    (
+      url.startsWith(
+        "https://"
+      ) ||
+      url.startsWith(
+        "http://"
+      )
+    )
+  );
+
+}
+
+
+
+function escapeHtml(value) {
+
+  if (!value) {
+
+    return "";
 
   }
 
 
-  function escapeHtml(value) {
+  return String(value)
 
-    if (!value) return "";
+    .replaceAll(
+      "&",
+      "&amp;"
+    )
 
-    return String(value)
-      .replaceAll("&", "&amp;")
-      .replaceAll("<", "&lt;")
-      .replaceAll(">", "&gt;")
-      .replaceAll('"', "&quot;")
-      .replaceAll("'", "&#039;");
+    .replaceAll(
+      "<",
+      "&lt;"
+    )
 
-  }
+    .replaceAll(
+      ">",
+      "&gt;"
+    )
 
+    .replaceAll(
+      '"',
+      "&quot;"
+    )
 
-  function formatDate(dateString) {
-
-    if (!dateString) {
-      return "Recent";
-    }
-
-
-    const match =
-      String(dateString).match(
-        /^(\d{4})(\d{2})(\d{2})T?(\d{2})(\d{2})(\d{2})/
-      );
-
-
-    if (!match) {
-      return dateString;
-    }
-
-
-    const date =
-      new Date(
-        Date.UTC(
-          Number(match[1]),
-          Number(match[2]) - 1,
-          Number(match[3]),
-          Number(match[4]),
-          Number(match[5]),
-          Number(match[6])
-        )
-      );
-
-
-    if (isNaN(date.getTime())) {
-      return dateString;
-    }
-
-
-    return date.toLocaleString(
-      [],
-      {
-        month: "short",
-        day: "numeric",
-        hour: "numeric",
-        minute: "2-digit"
-      }
+    .replaceAll(
+      "'",
+      "&#039;"
     );
 
+}
+
+
+
+function formatDate(
+  value
+) {
+
+  if (!value) {
+
+    return "Recent";
+
   }
 
 
-  displayKeywords();
+  const match =
+    String(value).match(
+      /^(\d{4})(\d{2})(\d{2})T?(\d{2})(\d{2})(\d{2})/
+    );
+
+
+  if (!match) {
+
+    return value;
+
+  }
+
+
+  const date =
+    new Date(
+      Date.UTC(
+        Number(match[1]),
+        Number(match[2]) - 1,
+        Number(match[3]),
+        Number(match[4]),
+        Number(match[5]),
+        Number(match[6])
+      )
+    );
+
+
+  return date.toLocaleString(
+    [],
+    {
+      month: "short",
+      day: "numeric",
+      hour: "numeric",
+      minute: "2-digit"
+    }
+  );
+
+}
+
+
+
+displayKeywords();
+
 
 </script>
 
