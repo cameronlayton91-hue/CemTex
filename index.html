@@ -1135,9 +1135,113 @@ async function loadSavedIntelligence() {
 
   }
 
+}async function loadSavedIntelligence() {
+
+  const articleArea = document.getElementById("articles");
+  const status = document.getElementById("status");
+
+  articleArea.innerHTML =
+    '<div class="loading">🔎 Loading current market intelligence...</div>';
+
+  status.innerText = "Loading intelligence...";
+
+  try {
+
+    const response = await fetch("news.json?v=" + Date.now());
+
+    if (!response.ok) {
+      throw new Error("Could not load news.json");
+    }
+
+    const data = await response.json();
+
+    const articles = data.articles.map(article => {
+
+      let dateString = "";
+
+      if (article.published_at) {
+
+        const d = new Date(article.published_at);
+
+        const pad = n => String(n).padStart(2, "0");
+
+        dateString =
+          d.getUTCFullYear() +
+          pad(d.getUTCMonth() + 1) +
+          pad(d.getUTCDate()) +
+          "T" +
+          pad(d.getUTCHours()) +
+          pad(d.getUTCMinutes()) +
+          pad(d.getUTCSeconds());
+
+      }
+
+      return {
+
+        title: article.title,
+
+        url: article.url,
+
+        domain: article.source || "News Source",
+
+        seendate: dateString,
+
+        cemtexCategory: article.category,
+
+        score: article.score,
+
+        salesAngle: article.sales_angle
+
+      };
+
+    });
+
+    currentArticles = articles;
+
+    displayArticles(articles);
+
+    updateStats(articles);
+
+    document.getElementById("resultCount").innerText =
+      articles.length + " intelligence signals";
+
+    if (data.generated_at) {
+
+      const updated = new Date(data.generated_at);
+
+      status.innerText =
+        "Feed updated " +
+        updated.toLocaleString();
+
+    } else {
+
+      status.innerText = "Intelligence loaded";
+
+    }
+
+  }
+
+  catch(error) {
+
+    console.error(error);
+
+    articleArea.innerHTML =
+      '<div class="empty"><strong>Unable to load intelligence feed.</strong><br><br>Please try again.</div>';
+
+    status.innerText = "Feed error";
+
+  }
+
 }
-         displayKeywords();
+       }
+
+displayKeywords();
 loadSavedIntelligence();
+
+</script>
+
+</body>
+</html>
 
         };
 
