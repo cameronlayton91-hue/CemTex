@@ -1,1 +1,2055 @@
 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<title>CemTex | Interview Prep</title>
+
+<link
+  rel="stylesheet"
+  href="/CemTex/style.css?v=4"
+>
+
+<style>
+
+/* =========================
+   INTERVIEW PREP PAGE
+========================= */
+
+.prep-search-wrap {
+  position: sticky;
+  top: 10px;
+  z-index: 20;
+
+  background: rgba(8,13,22,.94);
+  backdrop-filter: blur(12px);
+
+  border: 1px solid #263449;
+  border-radius: 12px;
+
+  padding: 13px;
+
+  margin-bottom: 22px;
+
+  box-shadow: 0 8px 28px rgba(0,0,0,.28);
+}
+
+.prep-search {
+  width: 100%;
+
+  background: #0b1220;
+  color: white;
+
+  border: 1px solid #334155;
+  border-radius: 8px;
+
+  padding: 13px;
+
+  font-size: 14px;
+}
+
+.prep-search::placeholder {
+  color: #64748b;
+}
+
+.prep-section {
+  margin-bottom: 32px;
+}
+
+.prep-section-title {
+  margin-bottom: 14px;
+}
+
+.prep-section-title h2 {
+  margin: 4px 0;
+  font-size: 23px;
+}
+
+.qa {
+  background:
+    linear-gradient(
+      145deg,
+      #111827,
+      #151e2e
+    );
+
+  border: 1px solid #263449;
+  border-radius: 11px;
+
+  margin-bottom: 10px;
+
+  overflow: hidden;
+}
+
+.qa summary {
+  cursor: pointer;
+
+  padding: 16px 18px;
+
+  font-size: 14px;
+  font-weight: 750;
+
+  color: #f8fafc;
+
+  list-style: none;
+}
+
+.qa summary::-webkit-details-marker {
+  display: none;
+}
+
+.qa summary::after {
+  content: "+";
+  float: right;
+
+  color: #60a5fa;
+
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.qa[open] summary::after {
+  content: "–";
+}
+
+.qa[open] summary {
+  border-bottom: 1px solid #263449;
+}
+
+.answer {
+  padding: 16px 18px 18px;
+
+  color: #c0cad8;
+
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.answer strong {
+  color: white;
+}
+
+.coaching {
+  margin-top: 12px;
+
+  padding: 10px 12px;
+
+  background: #0b1220;
+
+  border-left: 3px solid #3b82f6;
+  border-radius: 6px;
+
+  color: #94a3b8;
+
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.cheat-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, 1fr);
+
+  gap: 12px;
+}
+
+.cheat-card {
+  background:
+    linear-gradient(
+      145deg,
+      #111827,
+      #172033
+    );
+
+  border: 1px solid #263449;
+  border-radius: 12px;
+
+  padding: 18px;
+}
+
+.cheat-card h3 {
+  margin: 0 0 8px;
+
+  color: #60a5fa;
+
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: .6px;
+}
+
+.cheat-card p {
+  margin: 0;
+
+  color: #c0cad8;
+
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.big-line {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(37,99,235,.22),
+      #111827
+    );
+
+  border: 1px solid rgba(59,130,246,.45);
+  border-left: 4px solid #3b82f6;
+
+  border-radius: 12px;
+
+  padding: 20px;
+
+  margin-bottom: 15px;
+
+  color: #e2e8f0;
+
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.big-line strong {
+  color: white;
+}
+
+.jake-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2,1fr);
+
+  gap: 12px;
+}
+
+.jake-card {
+  background: #111827;
+
+  border: 1px solid #263449;
+  border-radius: 11px;
+
+  padding: 17px;
+}
+
+.jake-card h3 {
+  margin: 0 0 8px;
+  font-size: 14px;
+}
+
+.jake-card p,
+.jake-card li {
+  color: #b8c2d0;
+
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.jake-card ul {
+  margin-bottom: 0;
+  padding-left: 18px;
+}
+
+.lightning-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2,1fr);
+
+  gap: 8px;
+}
+
+.lightning-item {
+  background: #111827;
+
+  border: 1px solid #263449;
+  border-radius: 9px;
+
+  padding: 13px;
+}
+
+.lightning-q {
+  color: #94a3b8;
+
+  font-size: 10px;
+  font-weight: 800;
+
+  text-transform: uppercase;
+
+  margin-bottom: 5px;
+}
+
+.lightning-a {
+  color: white;
+
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.red-card {
+  background: rgba(127,29,29,.13);
+
+  border: 1px solid #7f1d1d;
+
+  border-radius: 10px;
+
+  padding: 16px;
+
+  margin-bottom: 10px;
+}
+
+.red-card strong {
+  color: #fca5a5;
+}
+
+.hidden-by-search {
+  display: none !important;
+}
+
+@media(max-width:800px) {
+
+  .cheat-grid,
+  .jake-grid,
+  .lightning-grid {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header class="topbar">
+
+  <div class="topbar-inner">
+
+    <div>
+
+      <div class="brand">
+        CemTex Intelligence
+      </div>
+
+      <div class="tagline">
+        Market Intelligence & Sales Opportunity Monitor
+      </div>
+
+    </div>
+
+
+    <nav class="nav">
+
+      <a
+        href="index.html"
+        class="nav-link"
+      >
+        Dashboard
+      </a>
+
+      <a
+        href="strategy.html"
+        class="nav-link"
+      >
+        Strategic Brief
+      </a>
+
+      <a
+        href="prep.html"
+        class="nav-link active"
+      >
+        Interview Prep
+      </a>
+
+    </nav>
+
+  </div>
+
+</header>
+
+
+
+<main class="container">
+
+
+<!-- HERO -->
+
+<section class="content-hero">
+
+  <div class="eyebrow">
+    CAMERON'S WORKING NOTES
+  </div>
+
+  <h1>
+    CEO Interview Prep Center
+  </h1>
+
+  <p>
+    Rehearse the structure, not the script.
+    The objective is to sound prepared, commercially sharp
+    and conversational — not memorized.
+  </p>
+
+</section>
+
+
+
+<!-- SEARCH -->
+
+<div class="prep-search-wrap">
+
+  <input
+    type="text"
+    id="prepSearch"
+    class="prep-search"
+    placeholder="Search prep: CRM, leadership, data center, underperformer, three-year plan..."
+  >
+
+</div>
+
+
+
+<!-- 5 MINUTE CHEAT SHEET -->
+
+<section class="prep-section searchable">
+
+  <div class="prep-section-title">
+
+    <div class="eyebrow">
+      READ THIS RIGHT BEFORE THE INTERVIEW
+    </div>
+
+    <h2>
+      Five-Minute Cheat Sheet
+    </h2>
+
+  </div>
+
+
+  <div class="cheat-grid">
+
+
+    <div class="cheat-card">
+
+      <h3>
+        How I Lead
+      </h3>
+
+      <p>
+        High autonomy + high accountability.
+        Clear expectations. Inspect the business without
+        hovering over good people. Coach aggressively and
+        give strong performers room to run.
+      </p>
+
+    </div>
+
+
+    <div class="cheat-card">
+
+      <h3>
+        How I Grow
+      </h3>
+
+      <p>
+        Protect the existing base, then identify the growth
+        pools: share of wallet, product penetration,
+        geography, lost business, strategic distributors
+        and cross-brand opportunities.
+      </p>
+
+    </div>
+
+
+    <div class="cheat-card">
+
+      <h3>
+        Performance
+      </h3>
+
+      <p>
+        Revenue is a lagging indicator. Watch pipeline
+        creation, conversion, margin, forecast accuracy
+        and strategic-account progress.
+      </p>
+
+    </div>
+
+
+    <div class="cheat-card">
+
+      <h3>
+        Underperformance
+      </h3>
+
+      <p>
+        Diagnose whether the issue is capability, effort,
+        strategy or market. Coach it, set the plan,
+        follow up, and make the hard decision if the
+        performance does not change.
+      </p>
+
+    </div>
+
+
+    <div class="cheat-card">
+
+      <h3>
+        Executive Thinking
+      </h3>
+
+      <p>
+        Profitable growth, customer concentration,
+        talent, forecast credibility, cross-functional
+        execution and a commercial process that scales.
+      </p>
+
+    </div>
+
+
+    <div class="cheat-card">
+
+      <h3>
+        Role Scale
+      </h3>
+
+      <p>
+        South is roughly a $25M business and Texcel's
+        largest region. Treat it like stewardship of a
+        business, not supervision of a rep count.
+      </p>
+
+    </div>
+
+
+    <div class="cheat-card">
+
+      <h3>
+        Why Me
+      </h3>
+
+      <p>
+        Growth experience + industrial/distributor selling
+        + leadership + commercial discipline + ability to
+        think across brands and channels.
+      </p>
+
+    </div>
+
+
+    <div class="cheat-card">
+
+      <h3>
+        Desired CEO Reaction
+      </h3>
+
+      <p>
+        “He can run this organization. He will tell me the
+        truth, develop the team, create structure without
+        bureaucracy and grow the business.”
+      </p>
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+
+<!-- POSITIONING -->
+
+<section class="prep-section searchable">
+
+  <div class="prep-section-title">
+
+    <div class="eyebrow">
+      YOUR DIFFERENTIATOR
+    </div>
+
+    <h2>
+      Positioning Lines
+    </h2>
+
+  </div>
+
+
+  <div class="big-line">
+
+    <strong>
+      Direct positioning:
+    </strong>
+
+    “Jake, I want to be straightforward. If you're looking
+    for someone to simply manage eight sales reps, there
+    are a lot of people who can do that. If you're looking
+    for someone who can think strategically across several
+    brands, connect overlapping channels, integrate teams
+    and help build a broader commercial platform, that's
+    where I believe I separate myself.”
+
+  </div>
+
+
+  <div class="big-line">
+
+    <strong>
+      Follow with:
+    </strong>
+
+    “That's why my APSCO/Fruitland experience is relevant.
+    I've already had to make separate brands and sales
+    resources work together around the same distribution
+    base, and I've seen the opportunity that's created when
+    you get that right.”
+
+  </div>
+
+
+  <div class="big-line">
+
+    <strong>
+      Core management line:
+    </strong>
+
+    “My job is to make the team more productive, not to be
+    the hero on every deal.”
+
+  </div>
+
+</section>
+
+
+
+<!-- JAKE -->
+
+<section class="prep-section searchable">
+
+  <div class="prep-section-title">
+
+    <div class="eyebrow">
+      KNOW YOUR AUDIENCE
+    </div>
+
+    <h2>
+      Jake Walker — Read Before Interview
+    </h2>
+
+  </div>
+
+
+  <div class="jake-grid">
+
+
+    <div class="jake-card">
+
+      <h3>
+        Background
+      </h3>
+
+      <p>
+        West Point mechanical engineering background,
+        MBA, and a career spanning sales, distribution,
+        operations and CEO leadership.
+      </p>
+
+    </div>
+
+
+    <div class="jake-card">
+
+      <h3>
+        How to Speak His Language
+      </h3>
+
+      <ul>
+        <li>Execution</li>
+        <li>Accountability</li>
+        <li>Profitable growth</li>
+        <li>Integration</li>
+        <li>Scalable systems</li>
+        <li>Talent development</li>
+      </ul>
+
+    </div>
+
+
+    <div class="jake-card">
+
+      <h3>
+        Platform Mindset
+      </h3>
+
+      <p>
+        He has operated through acquisitions and multi-company
+        environments. Talk about Texcel, SHF, OmegaOne and
+        APG as a broader commercial platform.
+      </p>
+
+    </div>
+
+
+    <div class="jake-card">
+
+      <h3>
+        Your Connection
+      </h3>
+
+      <p>
+        APSCO/Fruitland is your strongest parallel:
+        overlapping distribution, different technical
+        capabilities and the need to coordinate commercial
+        resources across brands.
+      </p>
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+
+<!-- LEADERSHIP -->
+
+<section class="prep-section">
+
+  <div class="prep-section-title">
+
+    <div class="eyebrow">
+      Q&A
+    </div>
+
+    <h2>
+      Leadership & Management
+    </h2>
+
+  </div>
+
+
+  <details class="qa searchable">
+
+    <summary>
+      How would you describe your leadership style?
+    </summary>
+
+    <div class="answer">
+
+      I give people a lot of ownership, but ownership only
+      works when expectations are clear. I want salespeople
+      to feel like they're running their own businesses.
+      They should know their customers, pipeline, priorities
+      and number.
+
+      <br><br>
+
+      My role is to set direction, remove obstacles, coach
+      and hold them accountable. I inspect the business
+      through pipeline, forecast, customer activity and
+      results. If those are healthy, strong people get room
+      to execute.
+
+      <div class="coaching">
+        Land on: <strong>high autonomy + high accountability.</strong>
+      </div>
+
+    </div>
+
+  </details>
+
+
+
+  <details class="qa searchable">
+
+    <summary>
+      How do you hold salespeople accountable?
+    </summary>
+
+    <div class="answer">
+
+      Accountability starts with clarity. I want the person
+      to understand the revenue target, but also the leading
+      indicators that create the result.
+
+      <br><br>
+
+      If somebody misses, I diagnose the reason first,
+      agree on an action plan, establish a follow-up cadence
+      and then hold them to it. I'm supportive, but the
+      salesperson ultimately owns the result.
+
+    </div>
+
+  </details>
+
+
+
+  <details class="qa searchable">
+
+    <summary>
+      How do you lead experienced reps who know more product than you?
+    </summary>
+
+    <div class="answer">
+
+      I would expect experienced people to know their
+      customers, territories and product details better
+      than I do on day one.
+
+      <br><br>
+
+      I'm not there to prove I'm smarter than the technical
+      experts. My value is helping them prioritize,
+      challenge assumptions, identify untapped opportunities,
+      improve deal strategy and use company resources better.
+
+    </div>
+
+  </details>
+
+
+
+  <details class="qa searchable">
+
+    <summary>
+      How do you build trust with a new team?
+    </summary>
+
+    <div class="answer">
+
+      Consistency and follow-through. Early on I listen,
+      travel with the team, understand their customers and
+      frustrations, and identify a few problems I can
+      actually help solve.
+
+      <br><br>
+
+      People trust leadership faster when they see that you
+      listen, make good decisions and do what you said you
+      would do.
+
+    </div>
+
+  </details>
+
+
+
+  <details class="qa searchable">
+
+    <summary>
+      What do you do with an underperforming salesperson?
+    </summary>
+
+    <div class="answer">
+
+      First determine whether it's a capability problem,
+      effort problem, strategy problem or market problem.
+
+      <br><br>
+
+      Capability gets coaching. Strategy gets changed.
+      Market or resource issues get addressed. If the
+      problem is effort or accountability, expectations get
+      very clear very quickly.
+
+      <br><br>
+
+      People deserve coaching and clarity, but I'm
+      comfortable making the personnel decision when
+      somebody repeatedly fails to execute after receiving
+      support.
+
+      <div class="coaching">
+        Diagnose first. Act decisively second.
+      </div>
+
+    </div>
+
+  </details>
+
+
+
+  <details class="qa searchable">
+
+    <summary>
+      How do you handle a top performer with a difficult personality?
+    </summary>
+
+    <div class="answer">
+
+      Performance buys credibility, but it doesn't buy
+      permission to damage the culture.
+
+      <br><br>
+
+      I address the behavior privately and directly. If the
+      behavior is hurting collaboration, customers or the
+      team, it has to change. Top performers should raise
+      the organization's standard, not create a separate
+      rulebook for themselves.
+
+    </div>
+
+  </details>
+
+
+</section>
+
+
+
+<!-- STRATEGY -->
+
+<section class="prep-section">
+
+  <div class="prep-section-title">
+
+    <div class="eyebrow">
+      Q&A
+    </div>
+
+    <h2>
+      Growth & Strategy
+    </h2>
+
+  </div>
+
+
+  <details class="qa searchable">
+
+    <summary>
+      How do you drive growth through a sales team?
+    </summary>
+
+    <div class="answer">
+
+      First determine where growth can actually come from:
+      existing customers, product penetration, geography,
+      market potential, lost business and pipeline quality.
+
+      <br><br>
+
+      Then turn that into a small number of specific
+      priorities for each salesperson. After that,
+      execution needs a cadence: what's moving, what's
+      stuck, what changed, what support is needed and
+      what happens next?
+
+    </div>
+
+  </details>
+
+
+
+  <details class="qa searchable">
+
+    <summary>
+      How would you assess the organization in your first 90 days?
+    </summary>
+
+    <div class="answer">
+
+      <strong>Days 1–30:</strong>
+      Learn the people, customers, products, economics and
+      operating rhythm. Spend time in the field and analyze
+      revenue, margin, concentration, pipeline and forecast.
+
+      <br><br>
+
+      <strong>Days 31–60:</strong>
+      Identify the highest-value growth opportunities,
+      coverage gaps and talent issues.
+
+      <br><br>
+
+      <strong>Days 61–90:</strong>
+      Establish the priorities, scorecard and operating
+      cadence required to execute.
+
+      <div class="coaching">
+        “I want my first changes to be based on evidence, not ego.”
+      </div>
+
+    </div>
+
+  </details>
+
+
+
+  <details class="qa searchable">
+
+    <summary>
+      How do you grow existing accounts?
+    </summary>
+
+    <div class="answer">
+
+      Existing accounts are growth platforms, not just
+      maintenance accounts.
+
+      <br><br>
+
+      I want to understand our share of wallet, what product
+      categories they buy from us, what they buy elsewhere,
+      who influences the purchase decision and where we're
+      vulnerable.
+
+    </div>
+
+  </details>
+
+
+
+  <details class="qa searchable">
+
+    <summary>
+      How do you win against an entrenched competitor?
+    </summary>
+
+    <div class="answer">
+
+      Find the wedge. It could be availability, service,
+      lead time, technical support, pricing structure,
+      ease of doing business or a product gap.
+
+      <br><br>
+
+      Win something specific, execute extremely well and
+      expand from there. Share of wallet is often won
+      category by category.
+
+    </div>
+
+  </details>
+
+
+
+  <details class="qa searchable">
+
+    <summary>
+      How do you balance growth and margin?
+    </summary>
+
+    <div class="answer">
+
+      The goal is profitable, durable growth.
+
+      <br><br>
+
+      Revenue that destroys margin or creates operational
+      problems isn't automatically good growth. I want to
+      understand pricing power, cost-to-serve and which
+      opportunities justify strategic investment.
+
+      <div class="coaching">
+        Example: $30M at 60% gross margin = $18M GP.
+        $50M at 40% = $20M GP. Twenty million more sales
+        only created two million more gross profit.
+      </div>
+
+    </div>
+
+  </details>
+
+
+</section>
+
+
+
+<!-- THREE YEAR PLAN -->
+
+<section class="prep-section searchable">
+
+  <div class="prep-section-title">
+
+    <div class="eyebrow">
+      IMPORTANT ANSWER
+    </div>
+
+    <h2>
+      Three-Year Plan
+    </h2>
+
+  </div>
+
+
+  <div class="big-line">
+
+    <strong>
+      If you stepped into the South role, what's your three-year plan?
+    </strong>
+
+    <br><br>
+
+    I would start by treating the roughly $25M South
+    business as something I have to protect before I try
+    to redesign it.
+
+    <br><br>
+
+    In the first six to nine months, I'd segment revenue by
+    customer, product family, margin and salesperson; travel
+    with the team; meet our largest distributors; assess
+    pipeline quality and coverage; and identify where we're
+    underpenetrated.
+
+    <br><br>
+
+    By the end of year one, I want a credible forecast,
+    clear territory and account plans, stronger
+    product-penetration data and a short list of growth
+    priorities.
+
+    <br><br>
+
+    In year two, I would double down on two or three
+    repeatable plays — cross-selling sister brands,
+    targeted competitor conversions and selected verticals
+    like data-center cooling.
+
+    <br><br>
+
+    In year three, I want to scale what worked, develop
+    leaders underneath me and make South a model for
+    profitable multi-brand growth that can be replicated
+    elsewhere.
+
+  </div>
+
+</section>
+
+
+
+<!-- CRM / FORECAST -->
+
+<section class="prep-section">
+
+  <div class="prep-section-title">
+
+    <div class="eyebrow">
+      Q&A
+    </div>
+
+    <h2>
+      CRM, Forecasting & Operating Rhythm
+    </h2>
+
+  </div>
+
+
+  <details class="qa searchable">
+
+    <summary>
+      What's your view of CRM?
+    </summary>
+
+    <div class="answer">
+
+      CRM is valuable when it helps the salesperson and
+      management run the business. It becomes useless when
+      it's treated like a data-entry punishment.
+
+      <br><br>
+
+      My standard is simple: meaningful opportunities are
+      current, next steps are clear, close dates are
+      realistic and the pipeline reflects reality.
+
+      <br><br>
+
+      If leadership actually uses the information to help
+      people win and make decisions, adoption gets much
+      easier.
+
+    </div>
+
+  </details>
+
+
+
+  <details class="qa searchable">
+
+    <summary>
+      How do you forecast?
+    </summary>
+
+    <div class="answer">
+
+      Build the forecast from opportunity-level evidence,
+      not by asking salespeople how they feel about the
+      month.
+
+      <br><br>
+
+      I look at stage, customer commitment, timing,
+      historical conversion, next action and known risk.
+      Large opportunities need to be challenged because one
+      delayed project can distort an entire forecast.
+
+    </div>
+
+  </details>
+
+
+
+  <details class="qa searchable">
+
+    <summary>
+      What KPIs would you manage?
+    </summary>
+
+    <div class="answer">
+
+      Revenue, gross margin, growth versus plan, pipeline
+      creation, pipeline coverage, conversion, forecast
+      accuracy, strategic-account progress and new-category
+      wins.
+
+      <br><br>
+
+      I want enough activity data to diagnose problems,
+      but I don't want people rewarded for logging
+      meaningless activity.
+
+    </div>
+
+  </details>
+
+
+
+  <details class="qa searchable">
+
+    <summary>
+      How often do you review pipeline?
+    </summary>
+
+    <div class="answer">
+
+      Weekly visibility into major opportunities and
+      forecast movement, with deeper territory/account
+      reviews monthly or quarterly.
+
+      <br><br>
+
+      The objective isn't interrogation. It's making sure
+      priorities are clear, risk gets surfaced early and
+      leadership resources are applied to the right deals.
+
+    </div>
+
+  </details>
+
+
+</section>
+
+
+
+<!-- CEO / PE -->
+
+<section class="prep-section">
+
+  <div class="prep-section-title">
+
+    <div class="eyebrow">
+      Q&A
+    </div>
+
+    <h2>
+      CEO-Level Thinking
+    </h2>
+
+  </div>
+
+
+  <details class="qa searchable">
+
+    <summary>
+      How would you communicate with me as CEO?
+    </summary>
+
+    <div class="answer">
+
+      Keep you informed without making you manage the sales
+      organization for me.
+
+      <br><br>
+
+      I'd establish a predictable cadence around
+      performance, forecast, major wins, major risks,
+      talent and anything requiring executive involvement.
+
+      <br><br>
+
+      If I bring you a problem, I want to bring you my
+      recommendation too. Bad news should travel fast.
+
+    </div>
+
+  </details>
+
+
+
+  <details class="qa searchable">
+
+    <summary>
+      How do you create enterprise value, not just sales?
+    </summary>
+
+    <div class="answer">
+
+      Improve the quality of growth: customer
+      diversification, product penetration, distributor
+      relationships, repeatable process, credible
+      forecasting, stronger talent and healthier margins.
+
+      <br><br>
+
+      A business becomes more valuable when growth doesn't
+      depend on one rainmaker or a handful of customers.
+
+    </div>
+
+  </details>
+
+
+
+  <details class="qa searchable">
+
+    <summary>
+      Why are you ready for a larger leadership role now?
+    </summary>
+
+    <div class="answer">
+
+      Because my responsibilities have already expanded
+      beyond a traditional territory role.
+
+      <br><br>
+
+      I've spent years developing business, training and
+      supporting other salespeople, helping on larger
+      opportunities and thinking beyond one account list.
+
+      <br><br>
+
+      The next step I want is formal ownership of the
+      people, process and strategy — where success is
+      measured by what the organization produces.
+
+    </div>
+
+  </details>
+
+
+
+  <details class="qa searchable">
+
+    <summary>
+      How do I know you can manage instead of just sell?
+    </summary>
+
+    <div class="answer">
+
+      I don't view management as jumping into every
+      opportunity and closing it for the salesperson.
+
+      <br><br>
+
+      I've already had to influence, train, support and
+      drive execution through other people, including
+      situations where I didn't have formal authority.
+
+      <br><br>
+
+      What excites me about the role is building the system
+      around the team: priorities, coaching, pipeline
+      discipline, account strategy and accountability.
+
+    </div>
+
+  </details>
+
+
+
+  <details class="qa searchable">
+
+    <summary>
+      Why should I hire you?
+    </summary>
+
+    <div class="answer">
+
+      Because I bring both sides of what the role needs.
+
+      <br><br>
+
+      I have a proven commercial background and understand
+      how to win customers, but I'm also thinking about how
+      to make an entire sales organization perform.
+
+      <br><br>
+
+      I understand distributors, complex industrial selling,
+      major-account development and operating across
+      territories. I'm comfortable being accountable for a
+      number, developing people and having difficult
+      conversations.
+
+      <br><br>
+
+      I'm looking for somewhere I can build something, not
+      just make a lateral move.
+
+    </div>
+
+  </details>
+
+
+
+  <details class="qa searchable">
+
+    <summary>
+      You don't have the same hose depth as some existing leaders. Why you?
+    </summary>
+
+    <div class="answer">
+
+      I would never pretend I know more hose than people who
+      have spent decades in the industry.
+
+      <br><br>
+
+      Their technical depth is an asset I would use, not
+      compete with.
+
+      <br><br>
+
+      My job is to learn aggressively, ask the right
+      questions, put technical experts into the right
+      customer conversations and make the entire team more
+      productive.
+
+      <br><br>
+
+      What I bring is growth mindset, distributor selling,
+      leadership, commercial discipline and the ability to
+      think across brands and channels.
+
+    </div>
+
+  </details>
+
+
+</section>
+
+
+
+<!-- DATA CENTERS -->
+
+<section class="prep-section searchable">
+
+  <div class="prep-section-title">
+
+    <div class="eyebrow">
+      VERTICAL PITCH
+    </div>
+
+    <h2>
+      Data Centers
+    </h2>
+
+  </div>
+
+
+  <div class="big-line">
+
+    <strong>
+      Positioning line:
+    </strong>
+
+    “Jake, one vertical I think deserves a deliberate push
+    is data centers. The capital going into these facilities
+    is enormous, and AI is making cooling one of the most
+    critical systems in the building.
+
+    <br><br>
+
+    APG is already in that conversation. When I look across
+    Texcel hose, SHF/OmegaOne fittings and APG couplings and
+    sealing products, I see a chance to attack the cooling
+    system as one platform instead of four separate brands.”
+
+  </div>
+
+
+  <div class="big-line">
+
+    <strong>
+      Follow-up:
+    </strong>
+
+    “I would map the chiller and CDU manufacturers, cooling
+    skid builders, mechanical contractors and distributors
+    that control the specs.
+
+    <br><br>
+
+    In South, I'd treat it as a measurable pilot: define the
+    target accounts, product basket and conversion goals.
+    I don't want to fight over one hose order — I want to
+    understand how much of that cooling package we can own
+    and then scale what works.”
+
+  </div>
+
+
+  <div class="jake-grid">
+
+    <div class="jake-card">
+
+      <h3>
+        Cooling Opportunity
+      </h3>
+
+      <ul>
+        <li>Liquid cooling</li>
+        <li>Chilled water</li>
+        <li>Glycol systems</li>
+        <li>Hose</li>
+        <li>Fittings</li>
+        <li>Couplings</li>
+        <li>Seals / gaskets</li>
+      </ul>
+
+    </div>
+
+
+    <div class="jake-card">
+
+      <h3>
+        Who to Target
+      </h3>
+
+      <ul>
+        <li>Chiller OEMs</li>
+        <li>CDU manufacturers</li>
+        <li>Cooling-skid builders</li>
+        <li>Mechanical contractors</li>
+        <li>System integrators</li>
+        <li>Distributors</li>
+      </ul>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- CEO QUESTIONS -->
+
+<section class="prep-section">
+
+  <div class="prep-section-title">
+
+    <div class="eyebrow">
+      FLIP THE INTERVIEW
+    </div>
+
+    <h2>
+      Questions to Ask Jake
+    </h2>
+
+  </div>
+
+
+  <details class="qa searchable" open>
+
+    <summary>
+      Growth thesis
+    </summary>
+
+    <div class="answer">
+      “When you look at the next three years, where do you
+      believe the biggest untapped growth is — existing
+      distributor penetration, new distributors, product
+      expansion, geography, acquisitions, or some
+      combination?”
+    </div>
+
+  </details>
+
+
+  <details class="qa searchable">
+
+    <summary>
+      Definition of success
+    </summary>
+
+    <div class="answer">
+      “If I'm sitting here twelve months from now and you
+      feel this was an outstanding hire, what will I have
+      accomplished?”
+    </div>
+
+  </details>
+
+
+  <details class="qa searchable">
+
+    <summary>
+      Team reality
+    </summary>
+
+    <div class="answer">
+      “Where do you think the current sales organization is
+      strongest today, and where do you think it needs the
+      most leadership?”
+    </div>
+
+  </details>
+
+
+  <details class="qa searchable">
+
+    <summary>
+      Biggest growth constraint
+    </summary>
+
+    <div class="answer">
+      “What do you see as the biggest constraint on growth
+      right now — coverage, talent, product availability,
+      brand awareness, pricing, systems or execution?”
+    </div>
+
+  </details>
+
+
+  <details class="qa searchable">
+
+    <summary>
+      Decision rights
+    </summary>
+
+    <div class="answer">
+      “What decisions would you expect this role to own
+      immediately, and which decisions would you want
+      brought to you?”
+    </div>
+
+  </details>
+
+
+  <details class="qa searchable">
+
+    <summary>
+      VP path
+    </summary>
+
+    <div class="answer">
+      “You mentioned the potential path toward broader sales
+      leadership. What would you need to see from the person
+      in this role to earn that responsibility?”
+    </div>
+
+  </details>
+
+
+  <details class="qa searchable">
+
+    <summary>
+      Platform architecture
+    </summary>
+
+    <div class="answer">
+      “As the platform expands, do you ultimately see the
+      sales organizations remaining brand-specific, or
+      moving toward one coordinated commercial organization
+      while preserving technical specialization?”
+    </div>
+
+  </details>
+
+
+  <details class="qa searchable">
+
+    <summary>
+      South expectations
+    </summary>
+
+    <div class="answer">
+      “You mentioned South is approximately $25M and the
+      largest region. What growth rate and margin
+      expectations would make the first 12 to 24 months a
+      win?”
+    </div>
+
+  </details>
+
+
+  <details class="qa searchable">
+
+    <summary>
+      Closing question
+    </summary>
+
+    <div class="answer">
+      “Is there anything you've heard today that gives you
+      hesitation about my ability to succeed in the role?”
+    </div>
+
+  </details>
+
+</section>
+
+
+
+<!-- LIGHTNING ROUND -->
+
+<section class="prep-section searchable">
+
+  <div class="prep-section-title">
+
+    <div class="eyebrow">
+      20–40 SECOND ANSWERS
+    </div>
+
+    <h2>
+      CEO Lightning Round
+    </h2>
+
+  </div>
+
+
+  <div class="lightning-grid">
+
+
+    <div class="lightning-item">
+      <div class="lightning-q">
+        Relationship or process?
+      </div>
+      <div class="lightning-a">
+        Both. Relationships create trust; process makes
+        success repeatable and forecastable.
+      </div>
+    </div>
+
+
+    <div class="lightning-item">
+      <div class="lightning-q">
+        Revenue or margin?
+      </div>
+      <div class="lightning-a">
+        Profitable growth. I don't want the team buying
+        revenue with margin without a deliberate reason.
+      </div>
+    </div>
+
+
+    <div class="lightning-item">
+      <div class="lightning-q">
+        First sign a territory is in trouble?
+      </div>
+      <div class="lightning-a">
+        Weak pipeline creation before the revenue number
+        actually misses.
+      </div>
+    </div>
+
+
+    <div class="lightning-item">
+      <div class="lightning-q">
+        First sign a salesperson is in trouble?
+      </div>
+      <div class="lightning-a">
+        Avoidance: stale opportunities, vague next steps,
+        weak customer activity and excuses without a plan.
+      </div>
+    </div>
+
+
+    <div class="lightning-item">
+      <div class="lightning-q">
+        How much autonomy?
+      </div>
+      <div class="lightning-a">
+        A lot once expectations and guardrails are clear.
+        Autonomy without visibility is abdication.
+      </div>
+    </div>
+
+
+    <div class="lightning-item">
+      <div class="lightning-q">
+        When do you enter a deal?
+      </div>
+      <div class="lightning-a">
+        When my involvement increases the probability of
+        winning: executive sponsorship, pricing, internal
+        resources, negotiation or strategic importance.
+      </div>
+    </div>
+
+
+    <div class="lightning-item">
+      <div class="lightning-q">
+        What if your plan is wrong?
+      </div>
+      <div class="lightning-a">
+        Say it early, bring evidence, recommend the better
+        path and change it.
+      </div>
+    </div>
+
+
+    <div class="lightning-item">
+      <div class="lightning-q">
+        What do you expect from your team?
+      </div>
+      <div class="lightning-a">
+        Preparation, honesty, ownership, customer focus
+        and follow-through.
+      </div>
+    </div>
+
+
+    <div class="lightning-item">
+      <div class="lightning-q">
+        What should your team expect from you?
+      </div>
+      <div class="lightning-a">
+        Direction, access, coaching, resources,
+        consistency and straight answers.
+      </div>
+    </div>
+
+
+    <div class="lightning-item">
+      <div class="lightning-q">
+        How do you prioritize?
+      </div>
+      <div class="lightning-a">
+        Economic impact and strategic importance — not
+        whoever is making the most noise.
+      </div>
+    </div>
+
+
+    <div class="lightning-item">
+      <div class="lightning-q">
+        Missed quarter?
+      </div>
+      <div class="lightning-a">
+        Own it, diagnose the drivers, separate timing from
+        structural issues and act on leading indicators.
+      </div>
+    </div>
+
+
+    <div class="lightning-item">
+      <div class="lightning-q">
+        Management philosophy?
+      </div>
+      <div class="lightning-a">
+        Give good people ownership, make expectations
+        visible, coach aggressively and hold everyone —
+        including myself — accountable.
+      </div>
+    </div>
+
+
+  </div>
+
+</section>
+
+
+
+<!-- AVOID -->
+
+<section class="prep-section searchable">
+
+  <div class="prep-section-title">
+
+    <div class="eyebrow">
+      WATCH YOUR LANGUAGE
+    </div>
+
+    <h2>
+      Things Not to Say
+    </h2>
+
+  </div>
+
+
+  <div class="red-card">
+    <strong>Don't:</strong>
+    “I'm a hands-off manager.”
+    <br>
+    Say: high autonomy with visibility and accountability.
+  </div>
+
+
+  <div class="red-card">
+    <strong>Don't:</strong>
+    “I treat everyone the same.”
+    <br>
+    Standards are consistent; coaching adapts to the person.
+  </div>
+
+
+  <div class="red-card">
+    <strong>Don't:</strong>
+    “I can sell anything.”
+    <br>
+    Keep the identity focused on building a team that can win.
+  </div>
+
+
+  <div class="red-card">
+    <strong>Don't:</strong>
+    Jump immediately to firing an underperformer.
+    <br>
+    Diagnose, coach, clarify, then act decisively.
+  </div>
+
+
+  <div class="red-card">
+    <strong>Don't:</strong>
+    Pretend the estimated total platform revenue is a known fact.
+    <br>
+    Let Jake give you the real number.
+  </div>
+
+
+  <div class="red-card">
+    <strong>Don't:</strong>
+    Apologize for not being the deepest hose expert.
+    <br>
+    Respect the experts and position yourself as the commercial leader.
+  </div>
+
+
+</section>
+
+
+
+</main>
+
+
+
+<footer>
+
+CemTex Intelligence
+<span>•</span>
+CEO Interview Rehearsal Center
+
+</footer>
+
+
+
+<script>
+
+/* =========================
+   SEARCH INTERVIEW PREP
+========================= */
+
+const prepSearch =
+  document.getElementById(
+    "prepSearch"
+  );
+
+
+prepSearch.addEventListener(
+  "input",
+  function() {
+
+    const term =
+      this.value
+      .trim()
+      .toLowerCase();
+
+
+    const items =
+      document.querySelectorAll(
+        ".searchable, .qa"
+      );
+
+
+    if (!term) {
+
+      items.forEach(
+        item => {
+
+          item.classList.remove(
+            "hidden-by-search"
+          );
+
+        }
+      );
+
+      return;
+
+    }
+
+
+    items.forEach(
+      item => {
+
+        const text =
+          item.textContent
+          .toLowerCase();
+
+
+        if (
+          text.includes(term)
+        ) {
+
+          item.classList.remove(
+            "hidden-by-search"
+          );
+
+
+          if (
+            item.tagName ===
+            "DETAILS"
+          ) {
+
+            item.open = true;
+
+          }
+
+        }
+
+        else {
+
+          item.classList.add(
+            "hidden-by-search"
+          );
+
+        }
+
+      }
+    );
+
+  }
+);
+
+</script>
+
+
+</body>
+
+</html>
