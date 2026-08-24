@@ -2,3641 +2,432 @@
 <html lang="en">
 
 <head>
-
-<meta charset="UTF-8">
-
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0"
->
-
-<title>CemTex Intelligence</title>
-
-
-<style>
-
-:root {
-
-  --bg: #080d16;
-
-  --panel: #111827;
-
-  --panel2: #172033;
-
-  --panel3: #1e293b;
-
-  --text: #f8fafc;
-
-  --muted: #94a3b8;
-
-  --line: #293548;
-
-  --blue: #3b82f6;
-
-  --green: #10b981;
-
-  --red: #ef4444;
-
-  --orange: #f59e0b;
-
-  --purple: #a855f7;
-
-  --cyan: #06b6d4;
-
-}
-
-
-
-* {
-
-  box-sizing: border-box;
-
-}
-
-
-
-body {
-
-  margin: 0;
-
-  font-family:
-    Arial,
-    Helvetica,
-    sans-serif;
-
-  background:
-    radial-gradient(
-      circle at top,
-      #111c30 0%,
-      #080d16 45%,
-      #050912 100%
-    );
-
-  background-attachment: fixed;
-
-  color: var(--text);
-
-}
-
-
-
-header {
-
-  background:
-    linear-gradient(
-      135deg,
-      #0f172a,
-      #111c33,
-      #172554
-    );
-
-  border-bottom:
-    1px solid #24324a;
-
-  padding:
-    34px 20px;
-
-}
-
-
-
-.header-wrap {
-
-  max-width: 1280px;
-
-  margin: auto;
-
-}
-
-
-
-.brand {
-
-  font-size: 36px;
-
-  font-weight: 800;
-
-  letter-spacing: -1px;
-
-}
-
-
-
-.subtitle {
-
-  margin-top: 5px;
-
-  font-size: 17px;
-
-  color: #dbeafe;
-
-}
-
-
-
-.tagline {
-
-  margin-top: 10px;
-
-  font-size: 13px;
-
-  color: #60a5fa;
-
-}
-
-
-
-.container {
-
-  width: 94%;
-
-  max-width: 1280px;
-
-  margin:
-    24px auto 45px;
-
-}
-
-
-
-.stats {
-
-  display: grid;
-
-  grid-template-columns:
-    repeat(4, 1fr);
-
-  gap: 14px;
-
-  margin-bottom: 20px;
-
-}
-
-
-
-.stat-card {
-
-  background:
-    linear-gradient(
-      145deg,
-      #111827,
-      #172033
-    );
-
-  border:
-    1px solid var(--line);
-
-  border-radius: 14px;
-
-  padding: 20px;
-
-  box-shadow:
-    0 8px 25px
-    rgba(0,0,0,.22);
-
-}
-
-
-
-.stat-label {
-
-  color: var(--muted);
-
-  font-size: 11px;
-
-  font-weight: 700;
-
-  letter-spacing: .8px;
-
-  text-transform: uppercase;
-
-}
-
-
-
-.stat-number {
-
-  margin-top: 6px;
-
-  font-size: 31px;
-
-  font-weight: 800;
-
-}
-
-
-
-.panel {
-
-  background:
-    rgba(
-      17,
-      24,
-      39,
-      .96
-    );
-
-  border:
-    1px solid var(--line);
-
-  border-radius: 14px;
-
-  padding: 22px;
-
-  margin-bottom: 20px;
-
-  box-shadow:
-    0 8px 25px
-    rgba(0,0,0,.18);
-
-}
-
-
-
-.panel-title {
-
-  font-size: 19px;
-
-  font-weight: 750;
-
-  margin-bottom: 15px;
-
-}
-
-
-
-.panel-description {
-
-  color: var(--muted);
-
-  font-size: 12px;
-
-  margin-top: -8px;
-
-  margin-bottom: 16px;
-
-}
-
-
-
-.categories {
-
-  display: grid;
-
-  grid-template-columns:
-    repeat(4, 1fr);
-
-  gap: 10px;
-
-}
-
-
-
-.category {
-
-  border:
-    2px solid #263449;
-
-  background: #0e1625;
-
-  border-radius: 11px;
-
-  padding: 14px;
-
-  cursor: pointer;
-
-  transition: .18s;
-
-}
-
-
-
-.category:hover {
-
-  border-color: #475569;
-
-}
-
-
-
-.category.active {
-
-  border-color:
-    var(--blue);
-
-  background:
-    rgba(
-      37,
-      99,
-      235,
-      .14
-    );
-
-}
-
-
-
-.category-name {
-
-  font-weight: 700;
-
-  margin-bottom: 5px;
-
-}
-
-
-
-.category-description {
-
-  color: var(--muted);
-
-  font-size: 12px;
-
-  line-height: 1.4;
-
-}
-
-
-
-.controls {
-
-  display: flex;
-
-  flex-wrap: wrap;
-
-  gap: 10px;
-
-  align-items: center;
-
-}
-
-
-
-input,
-select {
-
-  border:
-    1px solid #334155;
-
-  background: #0b1220;
-
-  color: var(--text);
-
-  border-radius: 8px;
-
-  padding:
-    11px 12px;
-
-  font-size: 14px;
-
-}
-
-
-
-input::placeholder {
-
-  color: #64748b;
-
-}
-
-
-
-input {
-
-  flex: 1;
-
-  min-width: 240px;
-
-}
-
-
-
-button {
-
-  border: none;
-
-  border-radius: 8px;
-
-  padding:
-    11px 16px;
-
-  cursor: pointer;
-
-  font-size: 13px;
-
-  font-weight: 750;
-
-  transition: .15s;
-
-}
-
-
-
-button:hover {
-
-  transform:
-    translateY(-1px);
-
-}
-
-
-
-.primary {
-
-  background:
-    var(--green);
-
-  color: white;
-
-}
-
-
-
-.blue {
-
-  background:
-    var(--blue);
-
-  color: white;
-
-}
-
-
-
-.secondary {
-
-  background:
-    #263449;
-
-  color: #e2e8f0;
-
-}
-
-
-
-.filter-button.active {
-
-  background:
-    #7f1d1d;
-
-  color: #fecaca;
-
-}
-
-
-
-.purple-button.active {
-
-  background:
-    #581c87;
-
-  color: #e9d5ff;
-
-}
-
-
-
-.cyan-button.active {
-
-  background:
-    #164e63;
-
-  color: #cffafe;
-
-}
-
-
-
-.chips {
-
-  display: flex;
-
-  gap: 8px;
-
-  flex-wrap: wrap;
-
-  margin-top: 14px;
-
-}
-
-
-
-.chip {
-
-  background: #172033;
-
-  border:
-    1px solid #334155;
-
-  border-radius: 16px;
-
-  color: #cbd5e1;
-
-  padding:
-    6px 10px;
-
-  font-size: 12px;
-
-  cursor: pointer;
-
-}
-
-
-
-.chip:hover {
-
-  border-color:
-    var(--red);
-
-  color: white;
-
-}
-
-
-
-.status-row {
-
-  display: flex;
-
-  justify-content:
-    space-between;
-
-  gap: 10px;
-
-  flex-wrap: wrap;
-
-  margin-top: 14px;
-
-  color: var(--muted);
-
-  font-size: 12px;
-
-}
-
-
-
-.section-heading {
-
-  display: flex;
-
-  justify-content:
-    space-between;
-
-  align-items: end;
-
-  gap: 12px;
-
-  margin:
-    25px 0 12px;
-
-}
-
-
-
-.section-heading h2 {
-
-  margin: 0;
-
-  font-size: 22px;
-
-}
-
-
-
-.section-sub {
-
-  color: var(--muted);
-
-  font-size: 12px;
-
-}
-
-
-
-.monday-wrap {
-
-  display: grid;
-
-  grid-template-columns:
-    repeat(5, 1fr);
-
-  gap: 10px;
-
-  margin-bottom: 25px;
-
-}
-
-
-
-.monday-card {
-
-  background:
-    linear-gradient(
-      145deg,
-      #121c2f,
-      #151f32
-    );
-
-  border:
-    1px solid #334155;
-
-  border-top:
-    3px solid
-    var(--green);
-
-  border-radius: 11px;
-
-  padding: 15px;
-
-  min-height: 215px;
-
-}
-
-
-
-.monday-rank {
-
-  color:
-    var(--green);
-
-  font-size: 11px;
-
-  font-weight: 800;
-
-  text-transform: uppercase;
-
-}
-
-
-
-.monday-card h3 {
-
-  font-size: 14px;
-
-  line-height: 1.4;
-
-  margin:
-    8px 0;
-
-}
-
-
-
-.monday-card h3 a {
-
-  color: white;
-
-  text-decoration: none;
-
-}
-
-
-
-.monday-card h3 a:hover {
-
-  color: #60a5fa;
-
-}
-
-
-
-.monday-meta {
-
-  color: var(--muted);
-
-  font-size: 10px;
-
-  margin-bottom: 9px;
-
-}
-
-
-
-.monday-score {
-
-  display: inline-block;
-
-  background:
-    rgba(
-      239,
-      68,
-      68,
-      .14
-    );
-
-  color: #fca5a5;
-
-  border-radius: 10px;
-
-  padding:
-    4px 7px;
-
-  font-size: 10px;
-
-  font-weight: 750;
-
-}
-
-
-
-.article {
-
-  background:
-    linear-gradient(
-      145deg,
-      #111827,
-      #141d2d
-    );
-
-  border:
-    1px solid var(--line);
-
-  border-left:
-    5px solid
-    var(--blue);
-
-  border-radius: 12px;
-
-  padding: 20px;
-
-  margin-bottom: 14px;
-
-  box-shadow:
-    0 6px 20px
-    rgba(0,0,0,.16);
-
-}
-
-
-
-.article.high {
-
-  border-left-color:
-    var(--red);
-
-}
-
-
-
-.article.medium {
-
-  border-left-color:
-    var(--orange);
-
-}
-
-
-
-.badges {
-
-  display: flex;
-
-  gap: 7px;
-
-  flex-wrap: wrap;
-
-  margin-bottom: 10px;
-
-}
-
-
-
-.badge {
-
-  display: inline-block;
-
-  padding:
-    5px 9px;
-
-  border-radius: 12px;
-
-  font-size: 10px;
-
-  font-weight: 750;
-
-}
-
-
-
-.score-high {
-
-  background:
-    rgba(
-      239,
-      68,
-      68,
-      .14
-    );
-
-  color: #fca5a5;
-
-}
-
-
-
-.score-medium {
-
-  background:
-    rgba(
-      245,
-      158,
-      11,
-      .15
-    );
-
-  color: #fcd34d;
-
-}
-
-
-
-.score-normal {
-
-  background:
-    rgba(
-      59,
-      130,
-      246,
-      .15
-    );
-
-  color: #93c5fd;
-
-}
-
-
-
-.category-badge {
-
-  background:
-    rgba(
-      16,
-      185,
-      129,
-      .13
-    );
-
-  color: #6ee7b7;
-
-}
-
-
-
-.new-badge {
-
-  background:
-    rgba(
-      168,
-      85,
-      247,
-      .16
-    );
-
-  color: #d8b4fe;
-
-}
-
-
-
-.target-badge {
-
-  background:
-    rgba(
-      6,
-      182,
-      212,
-      .15
-    );
-
-  color: #67e8f9;
-
-}
-
-
-
-.territory-badge {
-
-  background:
-    rgba(
-      59,
-      130,
-      246,
-      .13
-    );
-
-  color: #bfdbfe;
-
-}
-
-
-
-.article h3 {
-
-  margin:
-    3px 0 8px;
-
-  font-size: 19px;
-
-  line-height: 1.35;
-
-}
-
-
-
-.article h3 a {
-
-  color: #f8fafc;
-
-  text-decoration: none;
-
-}
-
-
-
-.article h3 a:hover {
-
-  color: #60a5fa;
-
-}
-
-
-
-.meta {
-
-  color: var(--muted);
-
-  font-size: 12px;
-
-}
-
-
-
-.sales-angle {
-
-  background: #0b1220;
-
-  border:
-    1px solid #263449;
-
-  border-radius: 8px;
-
-  padding: 12px;
-
-  margin-top: 12px;
-
-  font-size: 13px;
-
-  line-height: 1.5;
-
-  color: #cbd5e1;
-
-}
-
-
-
-.sales-angle strong {
-
-  color: white;
-
-}
-
-
-
-.rep-row {
-
-  display: flex;
-
-  align-items: center;
-
-  gap: 8px;
-
-  flex-wrap: wrap;
-
-  margin-top: 12px;
-
-}
-
-
-
-.rep-label {
-
-  color: var(--muted);
-
-  font-size: 11px;
-
-  font-weight: 700;
-
-}
-
-
-
-.rep-select {
-
-  padding:
-    7px 9px;
-
-  font-size: 11px;
-
-}
-
-
-
-.trigger {
-
-  margin-top: 8px;
-
-  color: #64748b;
-
-  font-size: 10px;
-
-}
-
-
-
-.empty,
-.loading,
-.error {
-
-  background:
-    var(--panel);
-
-  border:
-    1px solid var(--line);
-
-  border-radius: 12px;
-
-  text-align: center;
-
-  padding:
-    45px 25px;
-
-  color: var(--muted);
-
-}
-
-
-
-.error {
-
-  border-color: #7f1d1d;
-
-  color: #fca5a5;
-
-}
-
-
-
-.demo-warning {
-
-  display: none;
-
-  background:
-    #422006;
-
-  border:
-    1px solid #92400e;
-
-  color: #fed7aa;
-
-  padding:
-    10px 12px;
-
-  border-radius: 8px;
-
-  font-size: 12px;
-
-  margin-bottom: 15px;
-
-}
-
-
-
-footer {
-
-  text-align: center;
-
-  color: #64748b;
-
-  padding: 30px;
-
-  font-size: 11px;
-
-}
-
-
-
-@media(max-width:1100px) {
-
-  .monday-wrap {
-
-    grid-template-columns:
-      repeat(3, 1fr);
-
-  }
-
-}
-
-
-
-@media(max-width:900px) {
-
-  .stats,
-  .categories {
-
-    grid-template-columns:
-      repeat(2,1fr);
-
-  }
-
-}
-
-
-
-@media(max-width:620px) {
-
-  .stats,
-  .categories,
-  .monday-wrap {
-
-    grid-template-columns:
-      1fr;
-
-  }
-
-
-  .brand {
-
-    font-size: 28px;
-
-  }
-
-
-  input {
-
-    min-width: 100%;
-
-  }
-
-}
-
-</style>
-
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>CemTex Intelligence</title>
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
 </head>
 
 
 <body>
 
 
-<header>
+<header class="topbar">
 
-<div class="header-wrap">
+  <div class="topbar-inner">
 
-  <div class="brand">
-    CemTex Intelligence
+    <div>
+
+      <div class="brand">
+        CemTex Intelligence
+      </div>
+
+      <div class="tagline">
+        Market Intelligence & Sales Opportunity Monitor
+      </div>
+
+    </div>
+
+
+    <nav class="nav">
+
+      <a
+        href="index.html"
+        class="nav-link active"
+      >
+        Dashboard
+      </a>
+
+      <a
+        href="strategy.html"
+        class="nav-link"
+      >
+        Strategic Brief
+      </a>
+
+      <a
+        href="prep.html"
+        class="nav-link"
+      >
+        Interview Prep
+      </a>
+
+    </nav>
+
   </div>
-
-  <div class="subtitle">
-    Market Intelligence & Sales Opportunity Monitor
-  </div>
-
-  <div class="tagline">
-    Turning market activity into actionable sales intelligence.
-  </div>
-
-</div>
 
 </header>
 
 
 
-<div class="container">
+<main class="container">
 
 
-<div class="stats">
+  <!-- HERO -->
 
+  <section class="hero">
 
-  <div class="stat-card">
+    <div>
 
-    <div class="stat-label">
-      Signals Showing
-    </div>
-
-    <div
-      class="stat-number"
-      id="articleCount"
-    >
-      0
-    </div>
-
-  </div>
-
-
-
-  <div class="stat-card">
-
-    <div class="stat-label">
-      High Priority
-    </div>
-
-    <div
-      class="stat-number"
-      id="highCount"
-    >
-      0
-    </div>
-
-  </div>
-
-
-
-  <div class="stat-card">
-
-    <div class="stat-label">
-      Data Center Signals
-    </div>
-
-    <div
-      class="stat-number"
-      id="dataCenterCount"
-    >
-      0
-    </div>
-
-  </div>
-
-
-
-  <div class="stat-card">
-
-    <div class="stat-label">
-      New Since Yesterday
-    </div>
-
-    <div
-      class="stat-number"
-      id="newCount"
-    >
-      0
-    </div>
-
-  </div>
-
-
-</div>
-
-
-
-<div class="panel">
-
-  <div class="panel-title">
-    Intelligence Channels
-  </div>
-
-
-  <div class="categories">
-
-
-    <div
-      class="category active"
-      data-category="Data Centers"
-      onclick="toggleCategory(this)"
-    >
-
-      <div class="category-name">
-        🖥️ Data Centers
+      <div class="eyebrow">
+        SALES INTELLIGENCE
       </div>
 
-      <div class="category-description">
-        Cooling, liquid cooling,
-        hyperscale builds and campuses.
+      <h1>
+        Turn market activity into sales opportunities.
+      </h1>
+
+      <p>
+        CemTex automatically gathers relevant market news,
+        prioritizes potential opportunities and helps turn
+        intelligence into action for the sales team.
+      </p>
+
+    </div>
+
+
+    <div class="feed-status-box">
+
+      <span class="status-dot"></span>
+
+      <div>
+
+        <div class="status-title">
+          Automated Feed
+        </div>
+
+        <div id="feedUpdated">
+          Loading latest intelligence...
+        </div>
+
       </div>
 
     </div>
 
+  </section>
 
 
-    <div
-      class="category active"
-      data-category="Industrial Expansion"
-      onclick="toggleCategory(this)"
-    >
 
-      <div class="category-name">
-        🏭 Industrial Expansion
+  <!-- STATS -->
+
+  <section class="stats">
+
+    <div class="stat-card">
+
+      <div class="stat-label">
+        Signals
       </div>
 
-      <div class="category-description">
-        New plants, manufacturing,
-        construction and capital projects.
-      </div>
-
-    </div>
-
-
-
-    <div
-      class="category active"
-      data-category="Energy & Process"
-      onclick="toggleCategory(this)"
-    >
-
-      <div class="category-name">
-        ⚙️ Energy & Process
-      </div>
-
-      <div class="category-description">
-        Refinery, petrochemical,
-        LNG and chemical activity.
-      </div>
-
-    </div>
-
-
-
-    <div
-      class="category active"
-      data-category="Platform Watch"
-      onclick="toggleCategory(this)"
-    >
-
-      <div class="category-name">
-        👁️ Platform Watch
-      </div>
-
-      <div class="category-description">
-        Texcel, SHF, OmegaOne,
-        APG and Harbour developments.
-      </div>
-
-    </div>
-
-
-  </div>
-
-</div>
-
-
-
-<div class="panel">
-
-  <div class="panel-title">
-    🎯 Target Account Watch
-  </div>
-
-  <div class="panel-description">
-    Add companies you want the sales team
-    to watch for trigger events.
-  </div>
-
-
-  <div class="controls">
-
-    <input
-      id="targetInput"
-      placeholder="Example: Microsoft, ExxonMobil, Dow..."
-    >
-
-    <button
-      class="blue"
-      onclick="addTarget()"
-    >
-      Add Target
-    </button>
-
-  </div>
-
-
-  <div
-    class="chips"
-    id="targetList"
-  ></div>
-
-</div>
-
-
-
-<div class="panel">
-
-  <div class="panel-title">
-    👤 Sales Team
-  </div>
-
-  <div class="panel-description">
-    Add team members and assign
-    intelligence signals directly to a rep.
-  </div>
-
-
-  <div class="controls">
-
-    <input
-      id="repInput"
-      placeholder="Add salesperson..."
-    >
-
-    <button
-      class="blue"
-      onclick="addRep()"
-    >
-      Add Rep
-    </button>
-
-  </div>
-
-
-  <div
-    class="chips"
-    id="repList"
-  ></div>
-
-</div>
-
-
-
-<div class="panel">
-
-  <div class="panel-title">
-    Opportunity Filters
-  </div>
-
-
-  <div class="controls">
-
-
-    <input
-      id="textFilter"
-      placeholder="Search: cooling, Houston, Microsoft..."
-    >
-
-
-
-    <select id="territoryFilter">
-
-      <option value="All">
-        All Territories
-      </option>
-
-      <option value="Texas / Gulf Coast">
-        Texas / Gulf Coast
-      </option>
-
-      <option value="Houston">
-        Houston Area
-      </option>
-
-      <option value="Texas">
-        Texas
-      </option>
-
-      <option value="Louisiana">
-        Louisiana
-      </option>
-
-      <option value="Southeast">
-        Southeast
-      </option>
-
-    </select>
-
-
-
-    <select id="timeSpan">
-
-      <option value="1">
-        Past 24 Hours
-      </option>
-
-      <option value="3">
-        Past 3 Days
-      </option>
-
-      <option
-        value="7"
-        selected
+      <div
+        class="stat-number"
+        id="articleCount"
       >
-        Past 7 Days
-      </option>
+        —
+      </div>
 
-      <option value="14">
-        Past 14 Days
-      </option>
-
-      <option value="31">
-        Past Month
-      </option>
-
-      <option value="0">
-        All Saved
-      </option>
-
-    </select>
-
-
-
-    <button
-      class="secondary filter-button"
-      id="highButton"
-      onclick="toggleHigh()"
-    >
-      🔥 High Priority
-    </button>
-
-
-
-    <button
-      class="secondary purple-button"
-      id="newButton"
-      onclick="toggleNew()"
-    >
-      🆕 New Since Yesterday
-    </button>
-
-
-
-    <button
-      class="secondary cyan-button"
-      id="targetButton"
-      onclick="toggleTargets()"
-    >
-      🎯 Target Accounts
-    </button>
-
-
-
-    <button
-      class="primary"
-      onclick="loadFeed()"
-    >
-      Refresh Feed
-    </button>
-
-
-
-    <button
-      class="secondary"
-      onclick="loadDemo()"
-    >
-      Demo Mode
-    </button>
-
-
-  </div>
-
-
-  <div class="status-row">
-
-    <div id="feedStatus">
-      Loading intelligence...
     </div>
 
-    <div id="feedUpdated"></div>
 
-  </div>
+    <div class="stat-card">
 
-</div>
+      <div class="stat-label">
+        High Priority
+      </div>
 
+      <div
+        class="stat-number"
+        id="highCount"
+      >
+        —
+      </div>
 
-
-<div
-  class="demo-warning"
-  id="demoWarning"
->
-  Demo Mode is active.
-  Sample opportunities are being shown
-  for presentation/testing only.
-</div>
-
-
-
-<div class="section-heading">
-
-  <div>
-
-    <h2>
-      ⭐ Monday Morning Opportunities
-    </h2>
-
-    <div class="section-sub">
-      Top five opportunities from the current view.
     </div>
 
-  </div>
 
-</div>
+    <div class="stat-card">
 
+      <div class="stat-label">
+        Data Centers
+      </div>
 
+      <div
+        class="stat-number"
+        id="dataCenterCount"
+      >
+        —
+      </div>
 
-<div
-  class="monday-wrap"
-  id="mondayFeed"
-></div>
-
-
-
-<div class="section-heading">
-
-  <div>
-
-    <h2>
-      Opportunity Feed
-    </h2>
-
-    <div class="section-sub">
-      Market activity ranked for sales relevance.
     </div>
 
-  </div>
+
+    <div class="stat-card">
+
+      <div class="stat-label">
+        New &lt; 24 Hours
+      </div>
+
+      <div
+        class="stat-number"
+        id="newCount"
+      >
+        —
+      </div>
+
+    </div>
+
+  </section>
 
 
-  <div
-    class="section-sub"
-    id="resultCount"
-  >
-    Loading...
-  </div>
 
-</div>
+  <!-- FILTERS -->
+
+  <section class="panel">
+
+    <div class="section-heading">
+
+      <div>
+
+        <div class="eyebrow">
+          FILTERS
+        </div>
+
+        <h2>
+          Opportunity Search
+        </h2>
+
+      </div>
+
+    </div>
+
+
+    <div class="filter-grid">
+
+
+      <input
+        id="searchFilter"
+        type="text"
+        placeholder="Search Houston, cooling, Microsoft, LNG..."
+      >
+
+
+      <select id="categoryFilter">
+
+        <option value="All">
+          All Categories
+        </option>
+
+        <option value="Data Centers">
+          Data Centers
+        </option>
+
+        <option value="Industrial Expansion">
+          Industrial Expansion
+        </option>
+
+        <option value="Energy & Process">
+          Energy & Process
+        </option>
+
+        <option value="Platform Watch">
+          Platform Watch
+        </option>
+
+      </select>
+
+
+      <select id="territoryFilter">
+
+        <option value="All">
+          All Territories
+        </option>
+
+        <option value="Texas / Gulf Coast">
+          Texas / Gulf Coast
+        </option>
+
+        <option value="Texas">
+          Texas
+        </option>
+
+        <option value="Houston">
+          Houston
+        </option>
+
+        <option value="Louisiana">
+          Louisiana
+        </option>
+
+      </select>
+
+
+      <select id="timeFilter">
+
+        <option value="1">
+          Past 24 Hours
+        </option>
+
+        <option value="3">
+          Past 3 Days
+        </option>
+
+        <option
+          value="7"
+          selected
+        >
+          Past 7 Days
+        </option>
+
+        <option value="14">
+          Past 14 Days
+        </option>
+
+        <option value="31">
+          Past Month
+        </option>
+
+        <option value="0">
+          All Saved
+        </option>
+
+      </select>
+
+
+    </div>
+
+
+    <div class="button-row">
+
+      <button
+        id="highPriorityButton"
+        class="filter-button"
+      >
+        🔥 High Priority
+      </button>
+
+      <button
+        id="newButton"
+        class="filter-button"
+      >
+        🆕 New Since Yesterday
+      </button>
+
+      <button
+        id="refreshButton"
+        class="primary-button"
+      >
+        Refresh Intelligence
+      </button>
+
+    </div>
+
+  </section>
 
 
 
-<div id="articles">
+  <!-- MONDAY MORNING -->
 
-  <div class="loading">
-    🔎 Loading current market intelligence...
-  </div>
+  <section>
 
-</div>
+    <div class="section-heading">
+
+      <div>
+
+        <div class="eyebrow">
+          EXECUTIVE VIEW
+        </div>
+
+        <h2>
+          Monday Morning Opportunities
+        </h2>
+
+        <p>
+          The five highest-priority signals from the current view.
+        </p>
+
+      </div>
+
+    </div>
 
 
-</div>
+    <div
+      class="priority-grid"
+      id="priorityFeed"
+    >
+
+      <div class="loading-card">
+        Loading top opportunities...
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- MAIN FEED -->
+
+  <section>
+
+    <div class="section-heading feed-heading">
+
+      <div>
+
+        <div class="eyebrow">
+          LIVE FEED
+        </div>
+
+        <h2>
+          Opportunity Feed
+        </h2>
+
+      </div>
+
+
+      <div
+        id="resultCount"
+        class="result-count"
+      >
+        Loading...
+      </div>
+
+    </div>
+
+
+    <div id="articleFeed">
+
+      <div class="loading-card">
+        Gathering current market intelligence...
+      </div>
+
+    </div>
+
+  </section>
+
+
+</main>
 
 
 
 <footer>
 
-CemTex Intelligence •
-Automated Sales Opportunity Discovery Prototype
+  CemTex Intelligence
+  <span>•</span>
+  Automated Sales Opportunity Discovery
 
 </footer>
 
 
 
-<script>
-
-
-let allArticles = [];
-
-let filteredArticles = [];
-
-let highOnly = false;
-
-let newOnly = false;
-
-let targetOnly = false;
-
-
-
-let targetAccounts =
-
-JSON.parse(
-  localStorage.getItem(
-    "cemtexTargets"
-  )
-) || [
-
-  "Microsoft",
-  "Amazon",
-  "Google",
-  "Meta",
-  "Apple"
-
-];
-
-
-
-let salesTeam =
-
-JSON.parse(
-  localStorage.getItem(
-    "cemtexTeam"
-  )
-) || [];
-
-
-
-let assignments =
-
-JSON.parse(
-  localStorage.getItem(
-    "cemtexAssignments"
-  )
-) || {};
-
-
-
-const territoryTerms = {
-
-
-  "Texas / Gulf Coast": [
-
-    "texas",
-    "houston",
-    "gulf coast",
-    "beaumont",
-    "baytown",
-    "freeport",
-    "port arthur",
-    "galveston",
-    "pasadena",
-    "conroe",
-    "corpus christi",
-    "lake charles",
-    "baton rouge",
-    "louisiana"
-
-  ],
-
-
-  "Houston": [
-
-    "houston",
-    "conroe",
-    "katy",
-    "cypress",
-    "baytown",
-    "pasadena",
-    "the woodlands",
-    "galveston"
-
-  ],
-
-
-  "Texas": [
-
-    "texas",
-    "houston",
-    "dallas",
-    "fort worth",
-    "austin",
-    "san antonio",
-    "beaumont",
-    "midland",
-    "odessa",
-    "corpus christi",
-    "amarillo",
-    "conroe"
-
-  ],
-
-
-  "Louisiana": [
-
-    "louisiana",
-    "lake charles",
-    "baton rouge",
-    "new orleans",
-    "shreveport",
-    "lafayette"
-
-  ],
-
-
-  "Southeast": [
-
-    "alabama",
-    "mississippi",
-    "georgia",
-    "florida",
-    "arkansas",
-    "tennessee",
-    "north carolina",
-    "south carolina"
-
-  ]
-
-};
-
-
-
-function saveTargets() {
-
-  localStorage.setItem(
-    "cemtexTargets",
-    JSON.stringify(
-      targetAccounts
-    )
-  );
-
-}
-
-
-
-function saveTeam() {
-
-  localStorage.setItem(
-    "cemtexTeam",
-    JSON.stringify(
-      salesTeam
-    )
-  );
-
-}
-
-
-
-function saveAssignments() {
-
-  localStorage.setItem(
-    "cemtexAssignments",
-    JSON.stringify(
-      assignments
-    )
-  );
-
-}
-
-
-
-function displayTargets() {
-
-  const container =
-    document.getElementById(
-      "targetList"
-    );
-
-
-  container.innerHTML = "";
-
-
-  targetAccounts.forEach(
-    (target,index) => {
-
-
-      const chip =
-        document.createElement(
-          "span"
-        );
-
-
-      chip.className =
-        "chip";
-
-
-      chip.textContent =
-        target + " ×";
-
-
-      chip.onclick =
-        function() {
-
-          targetAccounts.splice(
-            index,
-            1
-          );
-
-          saveTargets();
-
-          displayTargets();
-
-          applyFilters();
-
-        };
-
-
-      container.appendChild(
-        chip
-      );
-
-    }
-  );
-
-}
-
-
-
-function addTarget() {
-
-  const input =
-    document.getElementById(
-      "targetInput"
-    );
-
-
-  const value =
-    input.value.trim();
-
-
-  if (
-    value &&
-    !targetAccounts.some(
-      target =>
-        target.toLowerCase() ===
-        value.toLowerCase()
-    )
-  ) {
-
-    targetAccounts.push(
-      value
-    );
-
-    saveTargets();
-
-    displayTargets();
-
-    applyFilters();
-
-  }
-
-
-  input.value = "";
-
-}
-
-
-
-function displayTeam() {
-
-  const container =
-    document.getElementById(
-      "repList"
-    );
-
-
-  container.innerHTML = "";
-
-
-  if (
-    salesTeam.length === 0
-  ) {
-
-    container.innerHTML =
-      '<span style="color:#64748b;font-size:12px;">No reps added yet.</span>';
-
-    return;
-
-  }
-
-
-  salesTeam.forEach(
-    (rep,index) => {
-
-
-      const chip =
-        document.createElement(
-          "span"
-        );
-
-
-      chip.className =
-        "chip";
-
-
-      chip.textContent =
-        rep + " ×";
-
-
-      chip.onclick =
-        function() {
-
-          salesTeam.splice(
-            index,
-            1
-          );
-
-          saveTeam();
-
-          displayTeam();
-
-          renderAll();
-
-        };
-
-
-      container.appendChild(
-        chip
-      );
-
-    }
-  );
-
-}
-
-
-
-function addRep() {
-
-  const input =
-    document.getElementById(
-      "repInput"
-    );
-
-
-  const value =
-    input.value.trim();
-
-
-  if (
-    value &&
-    !salesTeam.some(
-      rep =>
-        rep.toLowerCase() ===
-        value.toLowerCase()
-    )
-  ) {
-
-    salesTeam.push(
-      value
-    );
-
-    saveTeam();
-
-    displayTeam();
-
-    renderAll();
-
-  }
-
-
-  input.value = "";
-
-}
-
-
-
-function toggleCategory(element) {
-
-  element.classList.toggle(
-    "active"
-  );
-
-  applyFilters();
-
-}
-
-
-
-function getSelectedCategories() {
-
-  return Array.from(
-    document.querySelectorAll(
-      ".category.active"
-    )
-  ).map(
-    element =>
-      element.dataset.category
-  );
-
-}
-
-
-
-function toggleHigh() {
-
-  highOnly =
-    !highOnly;
-
-
-  document
-    .getElementById(
-      "highButton"
-    )
-    .classList
-    .toggle(
-      "active",
-      highOnly
-    );
-
-
-  applyFilters();
-
-}
-
-
-
-function toggleNew() {
-
-  newOnly =
-    !newOnly;
-
-
-  document
-    .getElementById(
-      "newButton"
-    )
-    .classList
-    .toggle(
-      "active",
-      newOnly
-    );
-
-
-  applyFilters();
-
-}
-
-
-
-function toggleTargets() {
-
-  targetOnly =
-    !targetOnly;
-
-
-  document
-    .getElementById(
-      "targetButton"
-    )
-    .classList
-    .toggle(
-      "active",
-      targetOnly
-    );
-
-
-  applyFilters();
-
-}
-
-
-
-function normalizeArticle(article) {
-
-  return {
-
-    title:
-      article.title ||
-      "Untitled Article",
-
-    url:
-      safeUrl(
-        article.url
-      )
-        ? article.url
-        : "#",
-
-    source:
-      article.source ||
-      "News Source",
-
-    publishedAt:
-      article.published_at ||
-      null,
-
-    category:
-      article.category ||
-      "Market Intelligence",
-
-    score:
-      Number(
-        article.score
-      ) || 50,
-
-    salesAngle:
-      article.sales_angle ||
-      "Review for possible customer, competitive or territory implications.",
-
-    matchedQuery:
-      article.matched_query ||
-      ""
-
-  };
-
-}
-
-
-
-async function loadFeed() {
-
-  document
-    .getElementById(
-      "demoWarning"
-    )
-    .style.display =
-      "none";
-
-
-  document
-    .getElementById(
-      "feedStatus"
-    )
-    .textContent =
-      "Loading automated feed...";
-
-
-  try {
-
-
-    const response =
-      await fetch(
-        "news.json?v=" +
-        Date.now(),
-        {
-          cache:
-            "no-store"
-        }
-      );
-
-
-    if (
-      !response.ok
-    ) {
-
-      throw new Error(
-        "Unable to load news.json"
-      );
-
-    }
-
-
-    const data =
-      await response.json();
-
-
-    if (
-      !data ||
-      !Array.isArray(
-        data.articles
-      )
-    ) {
-
-      throw new Error(
-        "Invalid intelligence feed"
-      );
-
-    }
-
-
-    allArticles =
-      data.articles.map(
-        normalizeArticle
-      );
-
-
-    document
-      .getElementById(
-        "feedStatus"
-      )
-      .textContent =
-        "Automated feed loaded • " +
-        allArticles.length +
-        " saved signals";
-
-
-    if (
-      data.generated_at
-    ) {
-
-
-      const generated =
-        new Date(
-          data.generated_at
-        );
-
-
-      document
-        .getElementById(
-          "feedUpdated"
-        )
-        .textContent =
-          "Feed updated " +
-          generated.toLocaleString(
-            [],
-            {
-              month:
-                "short",
-
-              day:
-                "numeric",
-
-              hour:
-                "numeric",
-
-              minute:
-                "2-digit"
-            }
-          );
-
-    }
-
-
-    applyFilters();
-
-  }
-
-
-  catch(error) {
-
-
-    console.error(
-      error
-    );
-
-
-    document
-      .getElementById(
-        "feedStatus"
-      )
-      .textContent =
-        "Feed error";
-
-
-    document
-      .getElementById(
-        "articles"
-      )
-      .innerHTML =
-        `
-        <div class="error">
-          <strong>
-            Unable to load intelligence feed.
-          </strong>
-          <br><br>
-          Try Refresh Feed again.
-        </div>
-        `;
-
-  }
-
-}
-
-
-
-function combinedText(article) {
-
-  return [
-
-    article.title,
-
-    article.source,
-
-    article.category,
-
-    article.salesAngle,
-
-    article.matchedQuery
-
-  ]
-  .join(" ")
-  .toLowerCase();
-
-}
-
-
-
-function matchesTarget(article) {
-
-  const text =
-    combinedText(
-      article
-    );
-
-
-  return targetAccounts.some(
-    target =>
-      text.includes(
-        target.toLowerCase()
-      )
-  );
-
-}
-
-
-
-function matchesTerritory(
-  article,
-  territory
-) {
-
-  if (
-    territory ===
-    "All"
-  ) {
-
-    return true;
-
-  }
-
-
-  const terms =
-    territoryTerms[
-      territory
-    ] || [];
-
-
-  const text =
-    combinedText(
-      article
-    );
-
-
-  return terms.some(
-    term =>
-      text.includes(
-        term
-      )
-  );
-
-}
-
-
-
-function applyFilters() {
-
-  const categories =
-    getSelectedCategories();
-
-
-  const searchText =
-    document
-      .getElementById(
-        "textFilter"
-      )
-      .value
-      .trim()
-      .toLowerCase();
-
-
-  const territory =
-    document
-      .getElementById(
-        "territoryFilter"
-      )
-      .value;
-
-
-  const days =
-    Number(
-      document
-        .getElementById(
-          "timeSpan"
-        )
-        .value
-    );
-
-
-  const cutoff =
-    days > 0
-
-      ? Date.now() -
-        days *
-        86400000
-
-      : 0;
-
-
-
-  filteredArticles =
-    allArticles.filter(
-      article => {
-
-
-        if (
-          categories.length &&
-          !categories.includes(
-            article.category
-          )
-        ) {
-
-          return false;
-
-        }
-
-
-        if (
-          highOnly &&
-          article.score < 80
-        ) {
-
-          return false;
-
-        }
-
-
-        if (
-          newOnly &&
-          !isWithinHours(
-            article.publishedAt,
-            24
-          )
-        ) {
-
-          return false;
-
-        }
-
-
-        if (
-          targetOnly &&
-          !matchesTarget(
-            article
-          )
-        ) {
-
-          return false;
-
-        }
-
-
-        if (
-          !matchesTerritory(
-            article,
-            territory
-          )
-        ) {
-
-          return false;
-
-        }
-
-
-        if (
-          days > 0 &&
-          article.publishedAt
-        ) {
-
-
-          const published =
-            new Date(
-              article.publishedAt
-            ).getTime();
-
-
-          if (
-            !Number.isNaN(
-              published
-            ) &&
-            published < cutoff
-          ) {
-
-            return false;
-
-          }
-
-        }
-
-
-        if (
-          searchText &&
-          !combinedText(
-            article
-          ).includes(
-            searchText
-          )
-        ) {
-
-          return false;
-
-        }
-
-
-        return true;
-
-      }
-    );
-
-
-
-  filteredArticles.sort(
-    (a,b) =>
-      priorityScore(b) -
-      priorityScore(a)
-  );
-
-
-  renderAll();
-
-}
-
-
-
-function priorityScore(article) {
-
-  let score =
-    article.score;
-
-
-  if (
-    matchesTarget(
-      article
-    )
-  ) {
-
-    score += 8;
-
-  }
-
-
-  if (
-    isWithinHours(
-      article.publishedAt,
-      24
-    )
-  ) {
-
-    score += 4;
-
-  }
-
-
-  return score;
-
-}
-
-
-
-function renderAll() {
-
-  renderMonday();
-
-  displayArticles(
-    filteredArticles
-  );
-
-  updateStats(
-    filteredArticles
-  );
-
-
-  document
-    .getElementById(
-      "resultCount"
-    )
-    .textContent =
-      filteredArticles.length +
-      (
-        filteredArticles.length === 1
-
-          ? " intelligence signal"
-
-          : " intelligence signals"
-      );
-
-}
-
-
-
-function renderMonday() {
-
-  const container =
-    document.getElementById(
-      "mondayFeed"
-    );
-
-
-  container.innerHTML = "";
-
-
-  const topFive =
-    filteredArticles
-      .slice(0,5);
-
-
-  if (
-    topFive.length === 0
-  ) {
-
-    container.innerHTML =
-      `
-      <div
-        class="empty"
-        style="grid-column:1/-1;"
-      >
-        No current opportunities
-        match the selected filters.
-      </div>
-      `;
-
-    return;
-
-  }
-
-
-  topFive.forEach(
-    (article,index) => {
-
-
-      const card =
-        document.createElement(
-          "div"
-        );
-
-
-      card.className =
-        "monday-card";
-
-
-      card.innerHTML =
-        `
-
-        <div class="monday-rank">
-          #${index + 1}
-          Monday Priority
-        </div>
-
-        <h3>
-
-          <a
-            href="${escapeHtml(article.url)}"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            ${escapeHtml(article.title)}
-          </a>
-
-        </h3>
-
-        <div class="monday-meta">
-          ${escapeHtml(article.source)}
-          •
-          ${formatDate(article.publishedAt)}
-        </div>
-
-        <span class="monday-score">
-          Score ${article.score}
-        </span>
-
-        ${
-          matchesTarget(article)
-
-          ? `
-            <div
-              style="
-                margin-top:8px;
-                color:#67e8f9;
-                font-size:10px;
-                font-weight:700;
-              "
-            >
-              🎯 TARGET ACCOUNT MATCH
-            </div>
-            `
-
-          : ""
-        }
-
-        `;
-
-
-      container.appendChild(
-        card
-      );
-
-    }
-  );
-
-}
-
-
-
-function displayArticles(articles) {
-
-  const container =
-    document.getElementById(
-      "articles"
-    );
-
-
-  if (
-    articles.length === 0
-  ) {
-
-    container.innerHTML =
-      `
-      <div class="empty">
-
-        <strong>
-          No matching opportunities.
-        </strong>
-
-        <br><br>
-
-        Try another territory,
-        time range or filter.
-
-      </div>
-      `;
-
-    return;
-
-  }
-
-
-  container.innerHTML = "";
-
-
-  articles.forEach(
-    article => {
-
-
-      const level =
-        article.score >= 80
-
-          ? "high"
-
-          : article.score >= 68
-
-            ? "medium"
-
-            : "normal";
-
-
-      const scoreClass =
-        article.score >= 80
-
-          ? "score-high"
-
-          : article.score >= 68
-
-            ? "score-medium"
-
-            : "score-normal";
-
-
-      const targetMatch =
-        matchesTarget(
-          article
-        );
-
-
-      const territory =
-        document
-          .getElementById(
-            "territoryFilter"
-          )
-          .value;
-
-
-      const territoryMatch =
-        territory !== "All" &&
-        matchesTerritory(
-          article,
-          territory
-        );
-
-
-      const key =
-        articleKey(
-          article
-        );
-
-
-      const assignedRep =
-        assignments[key] ||
-        "";
-
-
-      const card =
-        document.createElement(
-          "div"
-        );
-
-
-      card.className =
-        "article " +
-        level;
-
-
-      card.innerHTML =
-        `
-
-        <div class="badges">
-
-          <span
-            class="badge ${scoreClass}"
-          >
-            Opportunity Score:
-            ${article.score}
-          </span>
-
-
-          <span
-            class="badge category-badge"
-          >
-            ${escapeHtml(article.category)}
-          </span>
-
-
-          ${
-            isWithinHours(
-              article.publishedAt,
-              24
-            )
-
-            ? `
-              <span
-                class="badge new-badge"
-              >
-                🆕 New Since Yesterday
-              </span>
-              `
-
-            : ""
-          }
-
-
-          ${
-            targetMatch
-
-            ? `
-              <span
-                class="badge target-badge"
-              >
-                🎯 Target Account
-              </span>
-              `
-
-            : ""
-          }
-
-
-          ${
-            territoryMatch
-
-            ? `
-              <span
-                class="badge territory-badge"
-              >
-                📍 ${escapeHtml(territory)}
-              </span>
-              `
-
-            : ""
-          }
-
-        </div>
-
-
-        <h3>
-
-          <a
-            href="${escapeHtml(article.url)}"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-
-            ${escapeHtml(article.title)}
-
-          </a>
-
-        </h3>
-
-
-        <div class="meta">
-
-          ${escapeHtml(article.source)}
-
-          •
-
-          ${formatDate(
-            article.publishedAt
-          )}
-
-        </div>
-
-
-        <div class="sales-angle">
-
-          <strong>
-            Sales Intelligence:
-          </strong>
-
-          ${escapeHtml(
-            article.salesAngle
-          )}
-
-        </div>
-
-
-        <div class="rep-row">
-
-          <span class="rep-label">
-            Assigned Rep:
-          </span>
-
-          <select
-            class="rep-select"
-            data-key="${escapeHtml(key)}"
-          >
-
-            ${repOptions(
-              assignedRep
-            )}
-
-          </select>
-
-        </div>
-
-
-        ${
-          article.matchedQuery
-
-          ? `
-            <div class="trigger">
-
-              Triggered by:
-              ${escapeHtml(
-                article.matchedQuery
-              )}
-
-            </div>
-            `
-
-          : ""
-        }
-
-        `;
-
-
-      const select =
-        card.querySelector(
-          ".rep-select"
-        );
-
-
-      select.addEventListener(
-        "change",
-        function() {
-
-
-          if (
-            this.value
-          ) {
-
-            assignments[key] =
-              this.value;
-
-          }
-
-          else {
-
-            delete assignments[
-              key
-            ];
-
-          }
-
-
-          saveAssignments();
-
-        }
-      );
-
-
-      container.appendChild(
-        card
-      );
-
-    }
-  );
-
-}
-
-
-
-function repOptions(selected) {
-
-  let html =
-    `
-    <option value="">
-      Unassigned
-    </option>
-    `;
-
-
-  salesTeam.forEach(
-    rep => {
-
-
-      html +=
-        `
-        <option
-          value="${escapeHtml(rep)}"
-          ${
-            selected === rep
-              ? "selected"
-              : ""
-          }
-        >
-          ${escapeHtml(rep)}
-        </option>
-        `;
-
-    }
-  );
-
-
-  return html;
-
-}
-
-
-
-function updateStats(articles) {
-
-  document
-    .getElementById(
-      "articleCount"
-    )
-    .textContent =
-      articles.length;
-
-
-  document
-    .getElementById(
-      "highCount"
-    )
-    .textContent =
-      articles.filter(
-        article =>
-          article.score >= 80
-      ).length;
-
-
-  document
-    .getElementById(
-      "dataCenterCount"
-    )
-    .textContent =
-      articles.filter(
-        article =>
-          article.category ===
-          "Data Centers"
-      ).length;
-
-
-  document
-    .getElementById(
-      "newCount"
-    )
-    .textContent =
-      articles.filter(
-        article =>
-          isWithinHours(
-            article.publishedAt,
-            24
-          )
-      ).length;
-
-}
-
-
-
-function loadDemo() {
-
-  document
-    .getElementById(
-      "demoWarning"
-    )
-    .style.display =
-      "block";
-
-
-  document
-    .getElementById(
-      "feedStatus"
-    )
-    .textContent =
-      "Demo Mode";
-
-
-  document
-    .getElementById(
-      "feedUpdated"
-    )
-    .textContent =
-      "Sample presentation data";
-
-
-  allArticles = [
-
-
-    {
-
-      title:
-        "Microsoft Announces Major Texas Data Center Expansion",
-
-      url:
-        "#",
-
-      source:
-        "Sample Technology News",
-
-      publishedAt:
-        new Date().toISOString(),
-
-      category:
-        "Data Centers",
-
-      score:
-        96,
-
-      salesAngle:
-        "Identify cooling-system OEMs, mechanical contractors and operators supporting the Texas campus and investigate hose, fittings, couplings, seals and fluid-handling requirements.",
-
-      matchedQuery:
-        "data center cooling"
-
-    },
-
-
-    {
-
-      title:
-        "Manufacturer Plans New Gulf Coast Production Facility",
-
-      url:
-        "#",
-
-      source:
-        "Sample Manufacturing News",
-
-      publishedAt:
-        new Date().toISOString(),
-
-      category:
-        "Industrial Expansion",
-
-      score:
-        89,
-
-      salesAngle:
-        "Identify the plant owner, EPC contractor and maintenance team, then evaluate future OEM, MRO, hose, fitting and fluid-transfer demand.",
-
-      matchedQuery:
-        "new manufacturing facility"
-
-    },
-
-
-    {
-
-      title:
-        "Louisiana LNG Operator Approves Capacity Expansion",
-
-      url:
-        "#",
-
-      source:
-        "Sample Energy News",
-
-      publishedAt:
-        new Date().toISOString(),
-
-      category:
-        "Energy & Process",
-
-      score:
-        86,
-
-      salesAngle:
-        "Review process-fluid, stainless fitting, sealing and maintenance requirements associated with the expansion.",
-
-      matchedQuery:
-        "LNG expansion"
-
-    },
-
-
-    {
-
-      title:
-        "Industrial Distributor Announces Strategic Acquisition",
-
-      url:
-        "#",
-
-      source:
-        "Sample Distribution News",
-
-      publishedAt:
-        new Date().toISOString(),
-
-      category:
-        "Platform Watch",
-
-      score:
-        76,
-
-      salesAngle:
-        "Evaluate product overlap, territory implications, customer relationships and changes in competitive positioning.",
-
-      matchedQuery:
-        "industrial acquisition"
-
-    },
-
-
-    {
-
-      title:
-        "Google Expands Liquid-Cooled Data Center Capacity",
-
-      url:
-        "#",
-
-      source:
-        "Sample Data Center News",
-
-      publishedAt:
-        new Date().toISOString(),
-
-      category:
-        "Data Centers",
-
-      score:
-        93,
-
-      salesAngle:
-        "Investigate liquid-cooling architecture and the OEMs and contractors supplying flexible fluid connections, couplings, fittings and sealing products.",
-
-      matchedQuery:
-        "liquid cooling"
-
-    }
-
-
-  ];
-
-
-  applyFilters();
-
-}
-
-
-
-function articleKey(article) {
-
-  const input =
-    article.url !== "#"
-
-      ? article.url
-
-      : article.title;
-
-
-  let hash = 0;
-
-
-  for (
-    let i = 0;
-    i < input.length;
-    i++
-  ) {
-
-    hash =
-      (
-        (hash << 5)
-        -
-        hash
-      )
-      +
-      input.charCodeAt(i);
-
-
-    hash |= 0;
-
-  }
-
-
-  return String(
-    hash
-  );
-
-}
-
-
-
-function safeUrl(url) {
-
-  return (
-    typeof url ===
-      "string" &&
-    (
-      url.startsWith(
-        "https://"
-      ) ||
-      url.startsWith(
-        "http://"
-      ) ||
-      url === "#"
-    )
-  );
-
-}
-
-
-
-function escapeHtml(value) {
-
-  return String(
-    value || ""
-  )
-
-  .replaceAll(
-    "&",
-    "&amp;"
-  )
-
-  .replaceAll(
-    "<",
-    "&lt;"
-  )
-
-  .replaceAll(
-    ">",
-    "&gt;"
-  )
-
-  .replaceAll(
-    '"',
-    "&quot;"
-  )
-
-  .replaceAll(
-    "'",
-    "&#039;"
-  );
-
-}
-
-
-
-function isWithinHours(
-  value,
-  hours
-) {
-
-  if (
-    !value
-  ) {
-
-    return false;
-
-  }
-
-
-  const time =
-    new Date(
-      value
-    ).getTime();
-
-
-  if (
-    Number.isNaN(
-      time
-    )
-  ) {
-
-    return false;
-
-  }
-
-
-  return (
-    Date.now() -
-    time <=
-    hours *
-    3600000
-  );
-
-}
-
-
-
-function formatDate(value) {
-
-  if (
-    !value
-  ) {
-
-    return "Recent";
-
-  }
-
-
-  const date =
-    new Date(
-      value
-    );
-
-
-  if (
-    Number.isNaN(
-      date.getTime()
-    )
-  ) {
-
-    return "Recent";
-
-  }
-
-
-  return date.toLocaleString(
-    [],
-    {
-
-      month:
-        "short",
-
-      day:
-        "numeric",
-
-      hour:
-        "numeric",
-
-      minute:
-        "2-digit"
-
-    }
-  );
-
-}
-
-
-
-document
-  .getElementById(
-    "textFilter"
-  )
-  .addEventListener(
-    "input",
-    applyFilters
-  );
-
-
-
-document
-  .getElementById(
-    "territoryFilter"
-  )
-  .addEventListener(
-    "change",
-    applyFilters
-  );
-
-
-
-document
-  .getElementById(
-    "timeSpan"
-  )
-  .addEventListener(
-    "change",
-    applyFilters
-  );
-
-
-
-document
-  .getElementById(
-    "targetInput"
-  )
-  .addEventListener(
-    "keydown",
-    function(event) {
-
-      if (
-        event.key === "Enter"
-      ) {
-
-        addTarget();
-
-      }
-
-    }
-  );
-
-
-
-document
-  .getElementById(
-    "repInput"
-  )
-  .addEventListener(
-    "keydown",
-    function(event) {
-
-      if (
-        event.key === "Enter"
-      ) {
-
-        addRep();
-
-      }
-
-    }
-  );
-
-
-
-displayTargets();
-
-displayTeam();
-
-loadFeed();
-
-
-</script>
+<script src="dashboard.js"></script>
 
 
 </body>
