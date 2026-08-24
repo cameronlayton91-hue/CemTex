@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<title>CemTex Prep Encryptor</title>
+
+<link
+  rel="stylesheet"
+  href="/CemTex/style.css?v=5"
+>
+
+<style>
+
+.encrypt-wrap {
+  max-width: 900px;
+  margin: 40px auto;
+}
+
+.encrypt-card {
+  background: #111827;
+
+  border: 1px solid #263449;
+  border-radius: 14px;
+
+  padding: 25px;
+}
+
+.encrypt-card h1 {
+  margin-top: 0;
+}
+
+.encrypt-card p {
+  color: #94a3b8;
+  line-height: 1.6;
+}
+
+.encrypt-card label {
+  display: block;
+
+  margin-top: 18px;
+  margin-bottom: 7px;
+
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.encrypt-card textarea {
+  width: 100%;
+  min-height: 300px;
+
+  resize: vertical;
+
+  background: #080d16;
+  color: white;
+
+  border: 1px solid #334155;
+  border-radius: 8px;
+
+  padding: 14px;
+
+  font-family: Arial, sans-serif;
+  line-height: 1.5;
+}
+
+.encrypt-card input {
+  width: 100%;
+
+  background: #080d16;
+  color: white;
+
+  border: 1px solid #334155;
+  border-radius: 8px;
+
+  padding: 13px;
+}
+
+.button-row {
+  margin-top: 16px;
+}
+
+.encrypt-button,
+.copy-button {
+  padding: 12px 16px;
+
+  border: none;
+  border-radius: 8px;
+
+  cursor: pointer;
+  font-weight: 750;
+}
+
+.encrypt-button {
+  background: #2563eb;
+  color: white;
+}
+
+.copy-button {
+  background: #10b981;
+  color: white;
+}
+
+#output {
+  min-height: 180px;
+
+  font-family: monospace;
+  font-size: 11px;
+}
+
+.message {
+  margin-top: 12px;
+
+  color: #6ee7b7;
+
+  font-size: 12px;
+}
+
+.warning {
+  padding: 12px;
+
+  background: rgba(245,158,11,.10);
+
+  border: 1px solid rgba(245,158,11,.35);
+  border-radius: 8px;
+
+  color: #fcd34d;
+
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<main class="container">
+
+<div class="encrypt-wrap">
+
+  <div class="encrypt-card">
+
+    <div class="eyebrow">
+      LOCAL BROWSER ENCRYPTION
+    </div>
+
+    <h1>
+      CemTex Prep Encryptor
+    </h1>
+
+    <p>
+      Paste your private prep HTML below.
+      Your browser encrypts it using your password.
+      The password is never saved in the output.
+    </p>
+
+
+    <div class="warning">
+
+      Do not forget your password.
+      There is no password reset because the password
+      is not stored anywhere.
+
+    </div>
+
+
+    <label>
+      PRIVATE PREP CONTENT
+    </label>
+
+    <textarea
+      id="plaintext"
+      placeholder="Paste private prep HTML here..."
+    ></textarea>
+
+
+    <label>
+      PASSWORD
+    </label>
+
+    <input
+      id="password"
+      type="password"
+      placeholder="Create a strong password"
+      autocomplete="new-password"
+    >
+
+
+    <label>
+      CONFIRM PASSWORD
+    </label>
+
+    <input
+      id="confirmPassword"
+      type="password"
+      placeholder="Enter the same password again"
+      autocomplete="new-password"
+    >
+
+
+    <div class="button-row">
+
+      <button
+        class="encrypt-button"
+        id="encryptButton"
+      >
+        Encrypt Prep
+      </button>
+
+      <button
+        class="copy-button"
+        id="copyButton"
+      >
+        Copy Encrypted JSON
+      </button>
+
+    </div>
+
+
+    <div
+      id="message"
+      class="message"
+    ></div>
+
+
+    <label>
+      ENCRYPTED OUTPUT
+    </label>
+
+    <textarea
+      id="output"
+      readonly
+      placeholder="Encrypted JSON will appear here..."
+    ></textarea>
+
+  </div>
+
+</div>
+
+</main>
+
+
+
+<script>
+
+const encoder =
+  new TextEncoder();
+
+
+function toBase64(bytes) {
+
+  let binary = "";
+
+  bytes.forEach(
+    byte => {
+
+      binary +=
+        String.fromCharCode(byte);
+
+    }
+  );
+
+  return btoa(binary);
+
+}
+
+
+
+async function deriveKey(
+  password,
+  salt
+) {
+
+  const keyMaterial =
+    await crypto.subtle.importKey(
+
+      "raw",
+
+      encoder.encode(password),
+
+      {
+        name: "PBKDF2"
+      },
+
+      false,
+
+      [
+        "deriveKey"
+      ]
+
+    );
+
+
+  return crypto.subtle.deriveKey(
+
+    {
+      name: "PBKDF2",
+
+      salt: salt,
+
+      iterations: 310000,
+
+      hash: "SHA-256"
+    },
+
+    keyMaterial,
+
+    {
+      name: "AES-GCM",
+
+      length: 256
+    },
+
+    false,
+
+    [
+      "encrypt"
+    ]
+
+  );
+
+}
+
+
+
+async function encryptPrep() {
+
+  const plaintext =
+    document
+      .getElementById("plaintext")
+      .value;
+
+
+  const password =
+    document
+      .getElementById("password")
+      .value;
+
+
+  const confirmPassword =
+    document
+      .getElementById("confirmPassword")
+      .value;
+
+
+  const message =
+    document
+      .getElementById("message");
+
+
+  const output =
+    document
+      .getElementById("output");
+
+
+  message.textContent = "";
+  output.value = "";
+
+
+  if (!plaintext) {
+
+    message.textContent =
+      "Paste your prep content first.";
+
+    return;
+
+  }
+
+
+  if (!password) {
+
+    message.textContent =
+      "Enter a password.";
+
+    return;
+
+  }
+
+
+  if (
+    password !==
+    confirmPassword
+  ) {
+
+    message.textContent =
+      "Passwords do not match.";
+
+    return;
+
+  }
+
+
+  if (
+    password.length < 12
+  ) {
+
+    message.textContent =
+      "Use at least 12 characters.";
+
+    return;
+
+  }
+
+
+  try {
+
+    const salt =
+      crypto.getRandomValues(
+        new Uint8Array(16)
+      );
+
+
+    const iv =
+      crypto.getRandomValues(
+        new Uint8Array(12)
+      );
+
+
+    const key =
+      await deriveKey(
+        password,
+        salt
+      );
+
+
+    const encrypted =
+      await crypto.subtle.encrypt(
+
+        {
+          name: "AES-GCM",
+          iv: iv
+        },
+
+        key,
+
+        encoder.encode(
+          plaintext
+        )
+
+      );
+
+
+    const result = {
+
+      salt:
+        toBase64(salt),
+
+      iv:
+        toBase64(iv),
+
+      data:
+        toBase64(
+          new Uint8Array(
+            encrypted
+          )
+        )
+
+    };
+
+
+    output.value =
+      JSON.stringify(
+        result,
+        null,
+        2
+      );
+
+
+    message.textContent =
+      "✓ Prep encrypted successfully.";
+
+  }
+
+  catch(error) {
+
+    console.error(error);
+
+    message.textContent =
+      "Encryption failed.";
+
+  }
+
+}
+
+
+
+async function copyOutput() {
+
+  const output =
+    document
+      .getElementById("output")
+      .value;
+
+
+  if (!output) {
+
+    document
+      .getElementById("message")
+      .textContent =
+        "Encrypt the prep first.";
+
+    return;
+
+  }
+
+
+  await navigator.clipboard.writeText(
+    output
+  );
+
+
+  document
+    .getElementById("message")
+    .textContent =
+      "✓ Encrypted JSON copied.";
+
+}
+
+
+
+document
+  .getElementById(
+    "encryptButton"
+  )
+  .addEventListener(
+    "click",
+    encryptPrep
+  );
+
+
+document
+  .getElementById(
+    "copyButton"
+  )
+  .addEventListener(
+    "click",
+    copyOutput
+  );
+
+</script>
+
+
+</body>
+
+</html>
